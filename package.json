@@ -4,7 +4,8 @@
   "description": "Go bake some delicous, creative stuff!",
   "main": "index.js",
   "scripts": {
-    "test": "gulp test"
+    "start": "gulp watch",
+    "install": "gulp"
   },
   "repository": {
     "type": "git",

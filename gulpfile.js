@@ -35,4 +35,10 @@ gulp.task('vectors', () => {
     .pipe(gulp.dest('dist/vectors'));
 });
 
+gulp.task('watch', () => {
+  gulp.watch(dirs.sass, ['styles']);
+  gulp.watch(dirs.js, ['scripts']);
+  gulp.watch(dirs.vectors, ['vectors']);
+});
+
 gulp.task('default', ['styles', 'scripts', 'vectors']);
