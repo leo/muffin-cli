@@ -1,0 +1,8 @@
+{
+  "https": false,
+  "db": {
+    "host": "localhost",
+    "port": 5984,
+    "name": "muffin"
+  }
+}
