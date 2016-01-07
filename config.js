@@ -4,4 +4,4 @@ module.exports = {
     port: 5984,
     name: 'muffin'
   }
-};
+}

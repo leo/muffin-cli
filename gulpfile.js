@@ -1,8 +1,8 @@
-const gulp = require('gulp'),
-      concat = require('gulp-concat'),
-      uglify = require('gulp-uglify'),
-      sass = require('gulp-sass'),
-      babel = require('gulp-babel');
+const gulp = require('gulp')
+const concat = require('gulp-concat')
+const uglify = require('gulp-uglify')
+const sass = require('gulp-sass')
+const babel = require('gulp-babel')
 
 const dirs = {
   sass: 'assets/styles/**/*.scss',
@@ -17,8 +17,8 @@ gulp.task('styles', () => {
       includePaths: ['assets/styles']
     }).on('error', sass.logError))
     .pipe(concat('styles.css'))
-    .pipe(gulp.dest('dist'));
-});
+    .pipe(gulp.dest('dist'))
+})
 
 gulp.task('scripts', () => {
   return gulp.src(dirs.js)
@@ -27,18 +27,18 @@ gulp.task('scripts', () => {
       presets: ['es2015']
     }))
     .pipe(uglify())
-    .pipe(gulp.dest('dist'));
-});
+    .pipe(gulp.dest('dist'))
+})
 
 gulp.task('vectors', () => {
   gulp.src(dirs.vectors)
-    .pipe(gulp.dest('dist/vectors'));
-});
+    .pipe(gulp.dest('dist/vectors'))
+})
 
 gulp.task('watch', () => {
-  gulp.watch(dirs.sass, ['styles']);
-  gulp.watch(dirs.js, ['scripts']);
-  gulp.watch(dirs.vectors, ['vectors']);
-});
+  gulp.watch(dirs.sass, ['styles'])
+  gulp.watch(dirs.js, ['scripts'])
+  gulp.watch(dirs.vectors, ['vectors'])
+})
 
-gulp.task('default', ['styles', 'scripts', 'vectors']);
+gulp.task('default', ['styles', 'scripts', 'vectors'])
