@@ -1,5 +1,5 @@
 {
-  "name": "baking-pan",
+  "name": "kit",
   "version": "0.1.0",
   "description": "Go bake some delicous, creative stuff!",
   "main": "index.js",
@@ -14,19 +14,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leo/baking-pan.git"
+    "url": "git+https://github.com/leo/kit.git"
   },
   "keywords": [
-    "yummy",
-    "baking",
+    "starter",
+    "kit",
+    "muffin",
     "form"
   ],
   "author": "Leonard Lamprecht <mindrun@icloud.com> (http://leo.im)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/leo/baking-pan/issues"
+    "url": "https://github.com/leo/kit/issues"
   },
-  "homepage": "https://github.com/leo/baking-pan#readme",
+  "homepage": "https://github.com/leo/kit#readme",
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
     "gulp": "^3.9.0",
