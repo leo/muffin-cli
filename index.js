@@ -1,2 +1,5 @@
-const config = require('./config')
+const config = {
+  https: true
+}
+
 require('../muffin')
