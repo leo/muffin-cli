@@ -10,13 +10,17 @@ module.exports = generators.Base.extend({
 
     var done = this.async();
 
-    this.prompt({
-      type    : 'input',
-      name    : 'name',
-      message : 'Project name',
-      default : this.appname // Default to current folder name
-    }, function (answers) {
-      this.log(answers.name);
+    const prompts = [
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Project name',
+        default: this.appname
+      }
+    ]
+
+    this.prompt(prompts, function (answers) {
+      Object.assign(this, answers);
       done();
     }.bind(this));
 
@@ -24,7 +28,7 @@ module.exports = generators.Base.extend({
   writing: function () {
 
     const details = {
-      name: 'Test',
+      name: this.name.toLowerCase(),
       author: 'Leo',
       year: new Date().getFullYear()
     }
