@@ -4,32 +4,36 @@ This is the officially supported boilerplate for creating websites using [muffin
 
 ## Get started
 
-If you just want to create new project using this, firstly make sure to install muffin's command line interface:
-
-```shell
-npm install muffin-cli -g
-```
-
-And then create a new project
-
-```shell
-muffin new sample
-```
+If you just want to create new project using muffin, please take a look at the [documentation][2].
 
 ## Contribute
 
 But if you want to help us with the development of this thing, clone the repo...
 
 ```shell
-git clone git://github.com/leo/baking-pan.git
-cd baking-pan
+git clone git://github.com/leo/generator-muffin.git
+cd generator-muffin
 ```
 
-... and install all dependencies:
+... install all other dependencies ...
 
 ```shell
-npm install gulp -g && npm install
+npm install gulp -g
+npm install yo -g
+npm install
 ```
 
+... and link the generator to global scope
+
+```shell
+npm init
+```
+
+Now you're able to try it out by running:
+
+```shell
+yo muffin
+```
 
 [1]: https://github.com/leo/muffin
+[2]: https://github.com/leo/muffin#use-me
