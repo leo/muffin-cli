@@ -25,18 +25,20 @@ module.exports = generators.Base.extend({
     ]
 
     this.prompt(prompts, function (answers) {
-      Object.assign(this, answers);
+
+      this.fields = {
+        year: new Date().getFullYear()
+      }
+
+      Object.assign(this.fields, answers);
       done();
+
     }.bind(this));
 
   },
   writing: function () {
 
-    const details = {
-      name: this.name.toLowerCase(),
-      author: this.author,
-      year: new Date().getFullYear()
-    }
+    const details = this.fields
 
     fs.readdir(this.templatePath(), function (err, files) {
 
