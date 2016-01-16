@@ -1,16 +1,15 @@
 const generators = require('yeoman-generator')
+const fs = require('fs')
 
 module.exports = generators.Base.extend({
   constructor: function () {
-    // Calling the super constructor is important so our generator is correctly set up
     generators.Base.apply(this, arguments)
-    generators.sourceRoot('./kit')
-
-    // Next, add your custom code
-    this.option('coffee'); // This method adds support for a `--coffee` flag
+    this.sourceRoot(__dirname + '/../kit')
   },
   prompting: function () {
+
     var done = this.async();
+
     this.prompt({
       type    : 'input',
       name    : 'name',
@@ -20,11 +19,28 @@ module.exports = generators.Base.extend({
       this.log(answers.name);
       done();
     }.bind(this));
+
   },
-  method1: function () {
-    console.log('method 1 just ran');
-  },
-  method2: function () {
-    console.log('method 2 just ran');
+  writing: function () {
+
+    const details = {
+      name: 'Test',
+      author: 'Leo',
+      year: new Date().getFullYear()
+    }
+
+    fs.readdir(this.templatePath(), function (err, files) {
+
+      if (err) {
+        throw err
+      }
+
+      for (file of files) {
+        var source = this.templatePath(file)
+        this.fs.copyTpl(source, this.destinationPath(file), details)
+      }
+
+    }.bind(this))
+
   }
 })
