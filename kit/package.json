@@ -1,0 +1,11 @@
+{
+  "name": "<%= name %>",
+  "version": "0.1.0",
+  "description": "A new website created using muffin",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "author": "<%= author %>",
+  "license": "MIT"
+}
