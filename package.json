@@ -16,7 +16,7 @@
     "yeoman-generator"
   ],
   "author": "Leonard Lamprecht <mindrun@icloud.com> (http://leo.im)",
-  "license": "WTFPL",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/leo/generator-muffin/issues"
   },
