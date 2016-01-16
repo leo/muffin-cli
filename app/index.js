@@ -16,6 +16,11 @@ module.exports = generators.Base.extend({
         name: 'name',
         message: 'Project name',
         default: this.appname
+      },
+      {
+        type: 'input',
+        name: 'author',
+        message: 'Author'
       }
     ]
 
@@ -29,7 +34,7 @@ module.exports = generators.Base.extend({
 
     const details = {
       name: this.name.toLowerCase(),
-      author: 'Leo',
+      author: this.author,
       year: new Date().getFullYear()
     }
 
