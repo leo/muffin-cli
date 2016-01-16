@@ -1,7 +1,7 @@
 {
   "name": "generator-muffin",
   "version": "0.1.0",
-  "description": "Go bake some delicous, creative stuff!",
+  "description": "The boilerplate for creating websites using muffin",
   "files": [
     "app"
   ],
