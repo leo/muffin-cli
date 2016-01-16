@@ -1,5 +1,5 @@
 {
-  "name": "kit",
+  "name": "generator-muffin",
   "version": "0.1.0",
   "description": "Go bake some delicous, creative stuff!",
   "main": "index.js",
@@ -7,6 +7,9 @@
     "start": "gulp watch",
     "install": "gulp"
   },
+  "files": [
+    "app"
+  ],
   "standard": {
     "globals": [
       "$"
@@ -20,7 +23,7 @@
     "starter",
     "kit",
     "muffin",
-    "form"
+    "yeoman-generator"
   ],
   "author": "Leonard Lamprecht <mindrun@icloud.com> (http://leo.im)",
   "license": "MIT",
@@ -38,5 +41,7 @@
     "gulp-sass": "^2.1.1",
     "gulp-uglify": "^1.5.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "yeoman-generator": "^0.22.3"
+  }
 }
