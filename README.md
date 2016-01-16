@@ -18,15 +18,14 @@ cd generator-muffin
 ... install all other dependencies ...
 
 ```shell
-npm install gulp -g
-npm install yo -g
+npm install gulp yo -g
 npm install
 ```
 
 ... and link the generator to global scope
 
 ```shell
-npm init
+npm link
 ```
 
 Now you're able to try it out by running:
