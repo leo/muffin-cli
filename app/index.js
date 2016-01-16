@@ -7,8 +7,7 @@ module.exports = generators.Base.extend({
     this.sourceRoot(__dirname + '/../kit')
   },
   prompting: function () {
-
-    var done = this.async();
+    var done = this.async()
 
     const prompts = [
       {
@@ -25,42 +24,33 @@ module.exports = generators.Base.extend({
     ]
 
     this.prompt(prompts, function (answers) {
-
       this.fields = {
         year: new Date().getFullYear()
       }
 
-      Object.assign(this.fields, answers);
-      done();
-
-    }.bind(this));
-
+      Object.assign(this.fields, answers)
+      done()
+    }.bind(this))
   },
   writing: function () {
-
     const details = this.fields
 
     fs.readdir(this.templatePath(), function (err, files) {
-
       if (err) {
         throw err
       }
 
-      for (file of files) {
+      for (var file of files) {
         var source = this.templatePath(file)
         this.fs.copyTpl(source, this.destinationPath(file), details)
       }
-
     }.bind(this))
 
-    /*
     this.installDependencies({
       bower: false,
       callback: function () {
         this.npmInstall('muffin')
       }.bind(this)
     })
-    */
-
   }
 })
