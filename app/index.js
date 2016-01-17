@@ -49,8 +49,8 @@ module.exports = generators.Base.extend({
     this.installDependencies({
       bower: false,
       callback: function () {
-        this.npmInstall('muffin')
-      }.bind(this)
+        // this.npmInstall('muffin')
+      }
     })
   }
 })
