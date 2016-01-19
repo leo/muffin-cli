@@ -5,6 +5,9 @@
   "files": [
     "app"
   ],
+  "greenkeeper": {
+    "emails": false
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leo/kit.git"
