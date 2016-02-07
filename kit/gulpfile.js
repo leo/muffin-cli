@@ -53,6 +53,8 @@ gulp.task('server', function () {
     script: 'index.js',
     ignore: ['assets/', 'dist/'],
     ext: 'js hbs'
+  }).on('restart', function () {
+    process.env.restarted = true
   })
 })
 
