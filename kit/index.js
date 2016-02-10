@@ -1,7 +1,7 @@
 const app = require('muffin')
 const router = app.router
 
-router.get('/', function *(next) {
+router.get('/', function *() {
   yield this.render('index')
 })
 
