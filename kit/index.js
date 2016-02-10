@@ -1,6 +1,8 @@
 const app = require('muffin')
+const router = app.router
 
-app.config = {
-  https: false,
-  port: 2000
-}
+router.get('/', function *(next) {
+  yield this.render('index')
+})
+
+app.run(router)
