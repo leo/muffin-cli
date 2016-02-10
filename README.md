@@ -10,6 +10,6 @@ If you just want to create new project using muffin, please take a look at the [
 
 But if you want to help us with the development of this thing, check [this][3] out.
 
-[1]: https://github.com/leo/muffin
-[2]: https://github.com/leo/muffin#use-me
-[3]: https://github.com/leo/muffin/wiki/Contribute
+[1]: https://github.com/small-cake/app
+[2]: https://github.com/small-cake/app#use-me
+[3]: https://github.com/small-cake/app/wiki/Contribute
