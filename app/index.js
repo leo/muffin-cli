@@ -17,7 +17,7 @@ module.exports = generators.Base.extend({
         message: 'Project name',
         default: this.appname,
         filter: function (input) {
-          return input.replace(' ', '')
+          return input.replace(' ', '').toLowerCase()
         }
       },
       {
