@@ -7,11 +7,6 @@
     "start": "gulp watch",
     "install": "gulp"
   },
-  "standard": {
-    "globals": [
-      "$"
-    ]
-  },
   "author": "<%= author %>",
   "license": "MIT",
   "devDependencies": {
