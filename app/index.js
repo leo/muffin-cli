@@ -15,7 +15,10 @@ module.exports = generators.Base.extend({
         type: 'input',
         name: 'name',
         message: 'Project name',
-        default: this.appname
+        default: this.appname,
+        filter: function (input) {
+          return input.replace(' ', '')
+        }
       },
       {
         type: 'input',
