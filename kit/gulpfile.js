@@ -7,13 +7,14 @@ const livereload = require('gulp-livereload')
 const nodemon = require('gulp-nodemon')
 
 const dirs = {
-  sass: 'assets/styles/**/*.scss',
-  js: 'assets/scripts/**/*.js',
-  vectors: 'assets/vectors/**/*.svg'
+  sass: 'assets/scss/**/*.scss',
+  js: 'assets/js/**/*.js',
+  images: 'assets/images/**/*'
 }
 
 gulp.task('styles', () => {
-  gulp.src(dirs.sass)
+  return gulp
+    .src(dirs.scss)
     .pipe(sass({
       outputStyle: 'compressed',
       includePaths: ['assets/styles']
@@ -24,7 +25,8 @@ gulp.task('styles', () => {
 })
 
 gulp.task('scripts', () => {
-  return gulp.src(dirs.js)
+  return gulp
+    .src(dirs.js)
     .pipe(concat('app.js'))
     .pipe(babel({
       presets: ['es2015']
@@ -34,18 +36,19 @@ gulp.task('scripts', () => {
     .pipe(livereload())
 })
 
-gulp.task('vectors', () => {
-  gulp.src(dirs.vectors)
-    .pipe(gulp.dest('dist/vectors'))
+gulp.task('images', () => {
+  return gulp
+    .src(dirs.images)
+    .pipe(gulp.dest('dist/images'))
     .pipe(livereload())
 })
 
 gulp.task('watch', ['server'], function () {
   livereload.listen()
 
-  gulp.watch(dirs.sass, ['styles'])
+  gulp.watch(dirs.scss, ['styles'])
   gulp.watch(dirs.js, ['scripts'])
-  gulp.watch(dirs.vectors, ['vectors'])
+  gulp.watch(dirs.images, ['images'])
 })
 
 gulp.task('server', function () {
@@ -58,4 +61,4 @@ gulp.task('server', function () {
   })
 })
 
-gulp.task('default', ['styles', 'scripts', 'vectors'])
+gulp.task('default', ['styles', 'scripts', 'images'])
