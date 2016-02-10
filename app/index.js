@@ -68,6 +68,10 @@ module.exports = generators.Base.extend({
       }
 
       for (var file of files) {
+        if (file === 'node_modules') {
+          continue
+        }
+
         var source = this.templatePath(file)
         this.fs.copyTpl(source, this.destinationPath(file), details)
       }

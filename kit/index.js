@@ -1,5 +1,5 @@
-const config = {
-  https: true
-}
+const app = require('muffin')
 
-require('muffin')
+app.config = {
+  https: false
+}
