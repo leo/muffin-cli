@@ -1,5 +1,6 @@
 const app = require('muffin')
 
 app.config = {
-  https: false
+  https: false,
+  port: 2000
 }
