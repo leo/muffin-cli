@@ -6,4 +6,8 @@ router.get('/', function *(next) {
   yield next
 })
 
-app.run(router)
+app.run(router, {
+  render: {
+    defaultLayout: 'default'
+  }
+})
