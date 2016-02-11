@@ -9,7 +9,6 @@
   },
   "author": "<%= author %>",
   "dependencies": {
-    "muffin": "^0.1.0"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
