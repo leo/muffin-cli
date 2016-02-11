@@ -6,7 +6,6 @@ module.exports = generators.Base.extend({
   constructor: function () {
     generators.Base.apply(this, arguments)
     this.sourceRoot(__dirname + '/../kit')
-    this.option('install')
 
     const dest = path.resolve(this.destinationRoot())
 
@@ -88,10 +87,6 @@ module.exports = generators.Base.extend({
         this.template(source, this.destinationPath(file), details)
       }
     }.bind(this))
-
-    if (!this.options.install) {
-      return
-    }
 
     this.installDependencies({
       bower: false
