@@ -82,10 +82,7 @@ module.exports = generators.Base.extend({
     }
 
     this.installDependencies({
-      bower: false,
-      callback: function () {
-        // this.npmInstall('muffin')
-      }
+      bower: false
     })
   }
 })
