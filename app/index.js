@@ -1,21 +1,33 @@
 const generators = require('yeoman-generator')
 const fs = require('fs')
+const path = require('path')
 
 module.exports = generators.Base.extend({
   constructor: function () {
     generators.Base.apply(this, arguments)
     this.sourceRoot(__dirname + '/../kit')
     this.option('install')
+
+    const dest = path.resolve(this.destinationRoot())
+
+    this.argument('path', {
+      type: String,
+      desc: 'The path in which the new site should be generated',
+      default: dest
+    })
+
+    this.destinationRoot(this.path)
   },
   prompting: function () {
-    var done = this.async()
+    const done = this.async()
+    const destPath = path.resolve(this.path)
 
     const prompts = [
       {
         type: 'input',
         name: 'name',
         message: 'Project name',
-        default: this.appname,
+        default: path.basename(destPath),
         filter: function (input) {
           return input.replace(' ', '').toLowerCase()
         }
@@ -73,7 +85,7 @@ module.exports = generators.Base.extend({
         }
 
         var source = this.templatePath(file)
-        this.fs.copyTpl(source, this.destinationPath(file), details)
+        this.template(source, this.destinationPath(file), details)
       }
     }.bind(this))
 
