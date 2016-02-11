@@ -2,19 +2,33 @@
 <html>
 
   <head>
-    <title>My website</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>{{site.title}}</title>
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="canonical" href="{{site.canonical}}">
   </head>
 
   <body>
+
     <header id="menu">
+      <a href="/" class="logo">{{site.title}}</a>
+      <hr>
+      <nav>
+        <a href="/" class="active">Home</a>
+        <a href="/about">About</a>
+        <a href="/blog">Blog</a>
+        <a href="/contact">Contact</a>
+      </nav>
     </header>
 
-    <main id="content">
+    <article id="content">
       {{{@body}}}
-    </main>
+    </article>
 
-    <footer id="copyright">
-    </footer>
   </body>
 
 </html>
