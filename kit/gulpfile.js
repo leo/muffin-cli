@@ -8,7 +8,11 @@ const nodemon = require('gulp-nodemon')
 const paths = {
   scss: 'assets/scss/**/*.scss',
   js: 'assets/js/**/*.js',
-  images: 'assets/images/**/*'
+  images: 'assets/images/**/*',
+  templates: [
+    'views/**/*',
+    'layouts/**/*'
+  ]
 }
 
 gulp.task('styles', () => {
@@ -40,9 +44,16 @@ gulp.task('images', () => {
     .pipe(livereload())
 })
 
+gulp.task('templates', () => {
+  return gulp
+    .src(paths.templates)
+    .pipe(livereload())
+})
+
 gulp.task('watch', ['server'], function () {
   livereload.listen()
 
+  gulp.watch(paths.templates, ['templates'])
   gulp.watch(paths.scss, ['styles'])
   gulp.watch(paths.js, ['scripts'])
   gulp.watch(paths.images, ['images'])
@@ -52,7 +63,7 @@ gulp.task('server', function () {
   nodemon({
     script: 'index.js',
     ignore: ['assets/', 'dist/'],
-    ext: 'js hbs'
+    ext: 'js'
   }).on('restart', function () {
     process.env.restarted = true
   })
