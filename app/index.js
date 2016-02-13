@@ -83,8 +83,10 @@ module.exports = generators.Base.extend({
           continue
         }
 
+        var output = file.charAt(0) === '_' ? file.replace('_', '.') : file
         var source = this.templatePath(file)
-        this.template(source, this.destinationPath(file), details)
+
+        this.template(source, this.destinationPath(output), details)
       }
     }.bind(this))
 
