@@ -26,8 +26,5 @@
   "homepage": "https://github.com/leo/generator-muffin#readme",
   "dependencies": {
     "yeoman-generator": "^0.22.5"
-  },
-  "devDependencies": {
-    "standard": "^6.0.4"
   }
 }
