@@ -1,4 +1,8 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,500italic,500,300,300italic);
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
 
 ::selection {
   background: #4FC8E7;
@@ -6,12 +10,6 @@
 
 ::-moz-selection {
   background: #4FC8E7;
-}
-
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
 }
 
 a {
@@ -49,7 +47,7 @@ p {
 
   .logo {
     color: #5d5d5d;
-    font-weight: 500;
+    font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 0.02em;
     font-size: 1.3em;
