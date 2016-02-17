@@ -2,7 +2,7 @@ const gulp = require('gulp')
 const uglify = require('gulp-uglify')
 const sass = require('gulp-sass')
 const babel = require('gulp-babel')
-const livereload = require('gulp-livereload')
+const livereload = require('gulp-refresh')
 const nodemon = require('gulp-nodemon')
 
 const paths = {
