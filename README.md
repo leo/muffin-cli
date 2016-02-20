@@ -12,4 +12,4 @@ But if you want to help us with the development of this thing, check [this][3] o
 
 [1]: https://github.com/small-cake/app
 [2]: https://github.com/small-cake/app#use-me
-[3]: https://github.com/small-cake/app/wiki/Contribute
+[3]: https://github.com/small-cake/app/blob/master/CONTRIBUTING.md
