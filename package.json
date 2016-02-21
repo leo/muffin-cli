@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "The boilerplate for creating websites using muffin",
   "files": [
-    "app"
+    "app",
+    "kit"
   ],
   "greenkeeper": {
     "emails": false
