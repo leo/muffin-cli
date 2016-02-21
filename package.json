@@ -13,10 +13,10 @@
     "url": "git+https://github.com/leo/kit.git"
   },
   "keywords": [
+    "yeoman-generator",
     "starter",
     "kit",
-    "muffin",
-    "yeoman-generator"
+    "muffin"
   ],
   "author": "Leonard Lamprecht <mindrun@icloud.com> (http://leo.im)",
   "license": "MIT",
