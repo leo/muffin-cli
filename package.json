@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leo/kit.git"
+    "url": "git+https://github.com/small-cake/generator.git"
   },
   "keywords": [
     "yeoman-generator",
@@ -21,9 +21,9 @@
   "author": "Leonard Lamprecht <mindrun@icloud.com> (http://leo.im)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/leo/generator-muffin/issues"
+    "url": "https://github.com/small-cake/generator/issues"
   },
-  "homepage": "https://github.com/leo/generator-muffin#readme",
+  "homepage": "https://github.com/small-cake/generator#readme",
   "dependencies": {
     "yeoman-generator": "^0.22.5"
   }
