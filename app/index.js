@@ -1,5 +1,6 @@
 const generators = require('yeoman-generator')
 const mongoClient = require('mongodb').MongoClient
+const Mongonaut = require('mongonaut')
 
 const fs = require('fs')
 const path = require('path')
@@ -69,19 +70,32 @@ module.exports = generators.Base.extend({
       }
 
       Object.assign(this.fields, answers)
-
       const dbURL = `mongodb://${answers.db_host}:27017/${answers.db_name}`
 
       mongoClient.connect(dbURL, (err, db) => {
         if (err) {
           // Stops execution
-          this.env.error('Couldn\'t connect to DB')
+          this.env.error('Couldn\'t connect to DB. Please try again with different credentials!')
         }
 
-        this.log('Connected to DB!')
-
         db.close()
-        done()
+
+        const mongonaut = new Mongonaut({
+          user: answers.db_user || 'admin',
+          pwd: answers.db_password || '1234',
+          db: answers.db_name,
+          collection: 'pages'
+        })
+
+        mongonaut.import(__dirname + '/../data/pages.json')
+          .then(response => {
+            this.log(response)
+            done()
+          })
+          .catch(err => {
+            this.log(err)
+            this.env.error('Not able to insert sample data')
+          })
       })
     }.bind(this))
   },
