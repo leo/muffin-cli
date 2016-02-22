@@ -4,7 +4,8 @@
   "description": "The boilerplate for creating websites using muffin",
   "files": [
     "app",
-    "kit"
+    "kit",
+    "data"
   ],
   "greenkeeper": {
     "emails": false
