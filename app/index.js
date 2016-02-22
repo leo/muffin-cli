@@ -83,10 +83,7 @@ module.exports = generators.Base.extend({
       mongonaut.set('collection', 'users')
       const users = mongonaut.import(dataPath + 'users.json')
 
-      Promise.all([pages, users]).then(() => {
-        console.log('yeeeeha')
-        done()
-      }, (err) => {
+      Promise.all([pages, users]).then(() => done(), err => {
         this.log(err)
         this.env.error('Not able to insert sample data')
       })
