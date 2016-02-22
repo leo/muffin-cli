@@ -1,5 +1,4 @@
 const generators = require('yeoman-generator')
-const mongoClient = require('mongodb').MongoClient
 const Mongonaut = require('mongonaut')
 
 const fs = require('fs')
@@ -22,6 +21,7 @@ module.exports = generators.Base.extend({
   },
   prompting: function () {
     const done = this.async()
+    const dataPath = __dirname + '/../data/'
     const destPath = path.resolve(this.path)
 
     const prompts = [
@@ -70,32 +70,25 @@ module.exports = generators.Base.extend({
       }
 
       Object.assign(this.fields, answers)
-      const dbURL = `mongodb://${answers.db_host}:27017/${answers.db_name}`
 
-      mongoClient.connect(dbURL, (err, db) => {
-        if (err) {
-          // Stops execution
-          this.env.error('Couldn\'t connect to DB. Please try again with different credentials!')
-        }
+      const mongonaut = new Mongonaut({
+        user: answers.db_user || 'admin',
+        pwd: answers.db_password || '1234',
+        db: answers.db_name,
+        collection: 'pages'
+      })
 
-        db.close()
+      const pages = mongonaut.import(dataPath + 'pages.json')
 
-        const mongonaut = new Mongonaut({
-          user: answers.db_user || 'admin',
-          pwd: answers.db_password || '1234',
-          db: answers.db_name,
-          collection: 'pages'
-        })
+      mongonaut.set('collection', 'users')
+      const users = mongonaut.import(dataPath + 'users.json')
 
-        mongonaut.import(__dirname + '/../data/pages.json')
-          .then(response => {
-            this.log(response)
-            done()
-          })
-          .catch(err => {
-            this.log(err)
-            this.env.error('Not able to insert sample data')
-          })
+      Promise.all([pages, users]).then(() => {
+        console.log('yeeeeha')
+        done()
+      }, (err) => {
+        this.log(err)
+        this.env.error('Not able to insert sample data')
       })
     }.bind(this))
   },
