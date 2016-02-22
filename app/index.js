@@ -1,4 +1,6 @@
 const generators = require('yeoman-generator')
+const mongoClient = require('mongodb').MongoClient
+
 const fs = require('fs')
 const path = require('path')
 
@@ -67,7 +69,20 @@ module.exports = generators.Base.extend({
       }
 
       Object.assign(this.fields, answers)
-      done()
+
+      const dbURL = `mongodb://${answers.db_host}:27017/${answers.db_name}`
+
+      mongoClient.connect(dbURL, (err, db) => {
+        if (err) {
+          // Stops execution
+          this.env.error('Couldn\'t connect to DB')
+        }
+
+        this.log('Connected to DB!')
+
+        db.close()
+        done()
+      })
     }.bind(this))
   },
   writing: function () {

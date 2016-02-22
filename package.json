@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/small-cake/generator#readme",
   "dependencies": {
+    "mongodb": "^2.1.7",
     "yeoman-generator": "^0.22.5"
   }
 }
