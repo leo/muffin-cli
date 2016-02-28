@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp watch",
-    "install": "gulp"
+    "install": "gulp --silent"
   },
   "author": "<%= author %>",
   "dependencies": {},
