@@ -1,3 +1,8 @@
+**PLEASE NOTE:** This repository is only for learning purposes. It's neither maintained nor will it ever be. It only shows how much work went into muffin's initial version before we made the switch to a [client-side rendered Ember app](https://github.com/small-cake/client).
+
+
+<br><br>
+
 <p align="center">
   <a href="http://muffin.cafe">
     <img src="http://i.imgur.com/buhMCWz.png" width="170">
