@@ -1,5 +1,6 @@
 const generators = require('yeoman-generator')
 const Mongonaut = require('mongonaut')
+const fsExtra = require('fs-extra')
 
 const fs = require('fs')
 const path = require('path')
@@ -92,25 +93,34 @@ module.exports = generators.Base.extend({
   writing: function () {
     const details = this.fields
 
+    const dontCopy = [
+      'node_modules',
+      '.DS_Store'
+    ]
+
     fs.readdir(this.templatePath(), function (err, files) {
       if (err) {
         throw err
       }
 
       for (var file of files) {
-        if (file === 'node_modules') {
+        if (dontCopy.indexOf(file) > -1) {
           continue
         }
 
         var output = file.charAt(0) === '_' ? file.replace('_', '.') : file
         var source = this.templatePath(file)
 
-        this.template(source, this.destinationPath(output), details)
+        if (file === 'public') {
+          fsExtra.copySync(source, this.destinationPath(output))
+        } else {
+          this.template(source, this.destinationPath(output), details)
+        }
       }
-    }.bind(this))
 
-    this.installDependencies({
-      bower: false
-    })
+      this.installDependencies({
+        bower: false
+      })
+    }.bind(this))
   }
 })
