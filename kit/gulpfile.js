@@ -2,13 +2,14 @@ const gulp = require('gulp')
 const uglify = require('gulp-uglify')
 const sass = require('gulp-sass')
 const babel = require('gulp-babel')
-const livereload = require('gulp-refresh')
 const nodemon = require('gulp-nodemon')
+
+const browserSync = require('browser-sync').create()
 
 const paths = {
   scss: 'assets/scss/**/*.scss',
   js: 'assets/js/**/*.js',
-  images: 'assets/images/**/*',
+  public: 'public/**/*',
   templates: [
     'views/**/*',
     'layouts/**/*'
@@ -23,7 +24,7 @@ gulp.task('styles', () => {
       includePaths: ['assets/scss']
     }).on('error', sass.logError))
     .pipe(gulp.dest('dist'))
-    .pipe(livereload())
+    .pipe(browserSync.stream())
 })
 
 gulp.task('scripts', () => {
@@ -34,39 +35,32 @@ gulp.task('scripts', () => {
     }))
     .pipe(uglify())
     .pipe(gulp.dest('dist'))
-    .pipe(livereload())
+    .pipe(browserSync.stream())
 })
 
-gulp.task('images', () => {
-  return gulp
-    .src(paths.images)
-    .pipe(gulp.dest('dist/images'))
-    .pipe(livereload())
-})
-
-gulp.task('templates', () => {
-  return gulp
-    .src(paths.templates)
-    .pipe(livereload())
-})
-
-gulp.task('watch', ['server'], function () {
-  livereload.listen()
-
-  gulp.watch(paths.templates, ['templates'])
-  gulp.watch(paths.scss, ['styles'])
-  gulp.watch(paths.js, ['scripts'])
-  gulp.watch(paths.images, ['images'])
-})
-
-gulp.task('server', function () {
+gulp.task('serve', () => {
   nodemon({
     script: 'index.js',
     ignore: ['assets/', 'dist/'],
     ext: 'js'
-  }).on('restart', function () {
-    process.env.restarted = true
+  }).on('restart', () => setTimeout(() => {
+    browserSync.reload()
+  }, 500))
+
+  browserSync.init({
+    proxy: 'localhost:2000',
+    open: false,
+    logPrefix: 'muffin',
+    logFileChanges: false
   })
 })
 
-gulp.task('default', ['styles', 'scripts', 'images'])
+gulp.task('watch', ['serve'], () => {
+  gulp.watch(paths.scss, ['styles'])
+  gulp.watch(paths.js, ['scripts'])
+
+  gulp.watch(paths.templates, browserSync.reload)
+  gulp.watch(paths.public, browserSync.reload)
+})
+
+gulp.task('default', ['styles', 'scripts'])
