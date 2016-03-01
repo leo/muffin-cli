@@ -51,7 +51,9 @@ gulp.task('serve', () => {
     proxy: 'localhost:2000',
     open: false,
     logPrefix: 'muffin',
-    logFileChanges: false
+    logFileChanges: false,
+    notify: false,
+    ui: false
   })
 })
 
