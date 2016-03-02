@@ -1,34 +1,11 @@
 [{
   "_id": {
-    "$oid": "56bf1614d4c66b723dea0b06"
-  },
-  "title": "Blog",
-  "author": "admin",
-  "dates": {
-    "created": {
-      "$date": "2016-01-03T13:22:31.694Z"
-    },
-    "updated": {
-      "$date": "2016-01-03T13:22:31.694Z"
-    }
-  },
-  "__v": 0,
-  "slug": "blog",
-  "content": "\u003cp\u003eDisrupt fanny pack DIY hella sustainable, skateboard biodiesel man braid banjo 90's actually meh tumblr pour-over tilde. Food truck mlkshk cold-pressed 3 wolf moon irony.\u003c/p\u003e"
-},
-{
-  "_id": {
     "$oid": "56bf1587d4c66b723dea0b04"
   },
   "title": "Home",
   "author": "admin",
-  "dates": {
-    "created": {
-      "$date": "2016-01-03T13:22:47.649Z"
-    },
-    "updated": {
-      "$date": "2016-01-03T13:22:47.649Z"
-    }
+  "updatedAt": {
+    "$date": "2016-01-03T13:22:47.649Z"
   },
   "__v": 0,
   "slug": "",
@@ -36,17 +13,25 @@
 },
 {
   "_id": {
+    "$oid": "56bf1614d4c66b723dea0b06"
+  },
+  "title": "Blog",
+  "author": "admin",
+  "__v": 0,
+  "updatedAt": {
+    "$date": "2016-01-03T13:22:31.694Z"
+  },
+  "slug": "blog",
+  "content": "\u003cp\u003eDisrupt fanny pack DIY hella sustainable, skateboard biodiesel man braid banjo 90's actually meh tumblr pour-over tilde. Food truck mlkshk cold-pressed 3 wolf moon irony.\u003c/p\u003e"
+},
+{
+  "_id": {
     "$oid": "56bf15ecd4c66b723dea0b05"
   },
   "title": "About",
   "author": "admin",
-  "dates": {
-    "created": {
-      "$date": "2016-01-03T13:22:47.649Z"
-    },
-    "updated": {
-      "$date": "2016-01-03T13:22:47.649Z"
-    }
+  "updatedAt": {
+    "$date": "2016-01-03T13:22:47.649Z"
   },
   "__v": 0,
   "slug": "about",
@@ -58,15 +43,10 @@
   },
   "title": "Contact",
   "author": "admin",
-  "dates": {
-    "created": {
-      "$date": "2016-01-03T13:22:31.694Z"
-    },
-    "updated": {
-      "$date": "2016-01-03T13:22:31.694Z"
-    }
-  },
   "__v": 0,
+  "updatedAt": {
+    "$date": "2016-01-03T13:22:31.694Z"
+  },
   "slug": "contact",
   "content": "\u003cp\u003eHelvetica godard sartorial slow-carb lo-fi paleo chillwave, gluten-free squid typewriter lumbersexual man bun shabby chic tacos. Helvetica pork belly deep v church-key meggings. Readymade normcore pitchfork affogato twee organic.\u003c/p\u003e\u003cp\u003eVHS umami viral, kogi cred ethical cronut iPhone vinyl direct trade messenger bag brunch portland thundercats. +1 banjo waistcoat helvetica flexitarian, microdosing listicle taxidermy.\u003c/p\u003e"
 }]
