@@ -1,9 +1,13 @@
 const generators = require('yeoman-generator')
 const Mongonaut = require('mongonaut')
 const fsExtra = require('fs-extra')
+const updateNotifier = require('update-notifier')
+const pkg = require(__dirname + '/../package.json')
 
 const fs = require('fs')
 const path = require('path')
+
+updateNotifier({ pkg }).notify()
 
 module.exports = generators.Base.extend({
   constructor: function () {
