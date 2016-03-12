@@ -8,7 +8,9 @@
     "install": "gulp --silent"
   },
   "author": "<%= author %>",
-  "dependencies": {},
+  "dependencies": {
+    "muffin": "^1.0.0"
+  },
   "devDependencies": {
     "babel-preset-es2015": "^6.5.0",
     "browser-sync": "^2.11.1",
