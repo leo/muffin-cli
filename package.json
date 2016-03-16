@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/small-cake/generator#readme",
   "dependencies": {
-    "fs-extra": "^0.26.5",
+    "fs-extra": "^0.26.7",
     "mongonaut": "^2.0.2",
     "update-notifier": "^0.6.1",
     "yeoman-generator": "^0.22.5"
