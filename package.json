@@ -29,7 +29,7 @@
   "dependencies": {
     "fs-extra": "^0.26.5",
     "mongonaut": "^2.0.2",
-    "update-notifier": "^0.6.1",
+    "update-notifier": "^0.6.3",
     "yeoman-generator": "^0.22.5"
   }
 }
