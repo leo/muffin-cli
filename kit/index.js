@@ -9,4 +9,4 @@ router.get('/', function *(next) {
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-app.listen(2000, app.listening)
+app.listen(2000)
