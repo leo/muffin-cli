@@ -1,6 +1,6 @@
 [{
   "_id": {
-    "$oid": "56bf1587d4c66b723dea0b04"
+    "$oid": "56f53d952c8b73dc816455ab"
   },
   "title": "Home",
   "author": "admin",
@@ -13,7 +13,7 @@
 },
 {
   "_id": {
-    "$oid": "56bf1614d4c66b723dea0b06"
+    "$oid": "56f53dc42c8b73dc816455ac"
   },
   "title": "Philosophy",
   "author": "admin",
@@ -21,12 +21,12 @@
   "updatedAt": {
     "$date": "2016-01-03T13:22:31.694Z"
   },
-  "slug": "blog",
+  "slug": "philosophy",
   "content": "\u003cp\u003eDisrupt fanny pack DIY hella sustainable, skateboard biodiesel man braid banjo 90's actually meh tumblr pour-over tilde. Food truck mlkshk cold-pressed 3 wolf moon irony.\u003c/p\u003e"
 },
 {
   "_id": {
-    "$oid": "56bf15ecd4c66b723dea0b05"
+    "$oid": "56f53de82c8b73dc816455ad"
   },
   "title": "About",
   "author": "admin",
@@ -39,7 +39,7 @@
 },
 {
   "_id": {
-    "$oid": "56bf162cd4c66b723dea0b07"
+    "$oid": "56f53e0a2c8b73dc816455ae"
   },
   "title": "Contact",
   "author": "admin",
