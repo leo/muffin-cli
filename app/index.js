@@ -77,8 +77,8 @@ module.exports = generators.Base.extend({
       Object.assign(this.fields, answers)
 
       const mongonaut = new Mongonaut({
-        user: answers.db_user || 'admin',
-        pwd: answers.db_password || '1234',
+        user: answers.db_user || '',
+        pwd: answers.db_password || '',
         db: answers.db_name,
         collection: 'pages'
       })
