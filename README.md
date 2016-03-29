@@ -16,11 +16,10 @@ To be able to use muffin, you'll need **the latest version** of those things. So
 
 - [Node.js](https://nodejs.org/en/)
 - [MongoDB](https://www.mongodb.org)
-- [Yeoman](http://yeoman.io) and [Muffin's generator](https://www.npmjs.com/package/generator-muffin)
 
 ## Use me
 
-Please note that muffin isn't stable yet, so the commands below won't do you much. If you want to take a look at muffin in its current state, you need to read [this](https://github.com/small-cake/server/blob/master/CONTRIBUTING.md).
+Please note that muffin isn't stable yet, so the commands below won't do you much. If you want to take a look at muffin in its current state, you need to read [this](CONTRIBUTING.md).
 
 ---
 
