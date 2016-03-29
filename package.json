@@ -23,7 +23,7 @@
     "muffin-init": "bin/init.js"
   },
   "engines": {
-    "node": "latest"
+    "node": ">= 4.0.0"
   },
   "keywords": [
     "cms",
