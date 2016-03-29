@@ -20,21 +20,31 @@ if (path.basename(targetDir) == 'kit') {
   process.exit(0)
 }
 
-const walker = walk.walk(kit)
+const walker = fs.walk(kit)
+var files = []
 
-walker.on('file', function (root, fileStats, next) {
-  const way = root + '/' + fileStats.name
-  const subPath = root.replace(kit, '')
-  const folder = targetDir + subPath
-
-  fs.ensureDirSync(folder)
-
-  fs.copy(way, folder + '/' + fileStats.name, err => {
-    if (err) return console.error(err)
-    next()
-  })
+walker.on('data', item => {
+  files.push(item.path)
 })
 
-walker.on('end', function() {
+walker.on('end', () => {
+  files.shift()
+
+  for (var file of files) {
+    var dest = path.join(targetDir, path.relative(kit, file))
+
+    try {
+      fs.ensureDirSync(path.dirname(dest))
+    } catch (err) {
+      return console.error(err)
+    }
+
+    try {
+      fs.copySync(file, dest)
+    } catch (err) {
+      return console.error(errr)
+    }
+  }
+
   console.log('Generated new site in ' + targetDir.gray)
 })
