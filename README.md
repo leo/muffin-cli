@@ -25,22 +25,16 @@ Please note that muffin isn't stable yet, so the commands below won't do you muc
 
 ---
 
-Please firstly make sure that your database is available. On your local machine, the easiest way to start MongoDB is by running the following command:
+Simply use our neat CLI (which you've already installed previously) to generate a new boilerplate within the current directory:
 
 ```bash
-mongod
+muffin new
 ```
 
-After that, simply use our neat Yeoman generator (which you've already installed previously) to generate a new boilerplate within the current directory:
+You'll then be asked to enter a few details about your site. After you've answered all questions, your new site will be prepared. As soon as the setup is finished, use the following command to run muffin:
 
 ```bash
-yo muffin
-```
-
-You'll then be asked to enter a few details about your site and the database connection. After you've answered all questions, your new site will be prepared. As soon as the setup is finished, use the following command to run muffin:
-
-```bash
-npm start
+muffin serve
 ```
 
 That's all! :loudspeaker: :turtle:
