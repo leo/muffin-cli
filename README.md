@@ -1,3 +1,8 @@
+**OUTDATED! Please use use [this](https://github.com/small-cake/app) instead.**
+
+
+---
+
 # What is this?
 
 This is the officially supported boilerplate for creating websites using [muffin][1]. Although we encourage you to build on top of this, you're free to completely change the structure of this. Muffin won't give a fuck.
