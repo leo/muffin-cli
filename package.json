@@ -47,8 +47,10 @@
   "homepage": "http://muffin.cafe",
   "dependencies": {
     "bcrypt": "^0.8.5",
+    "colors": "^1.1.2",
     "commander": "^2.9.0",
     "dotenv": "^2.0.0",
+    "fs-extra": "^0.26.7",
     "gridfs-stream": "^1.1.1",
     "koa": "^1.2.0",
     "koa-body": "^1.4.0",
@@ -61,7 +63,8 @@
     "koa-static": "^2.0.0",
     "mongoose": "^4.4.10",
     "query-string": "^4.0.2",
-    "update-notifier": "^0.6.3"
+    "update-notifier": "^0.6.3",
+    "walk": "^2.3.9"
   },
   "devDependencies": {
     "nodemon": "^1.9.1"
