@@ -10,6 +10,6 @@ app
   .version(require(__dirname + '/package.json').version)
 
 app
-  .command('init', 'Generate a new site in the current directory')
+  .command('new', 'Generate the boilerplate for a new site')
 
 app.parse(process.argv)
