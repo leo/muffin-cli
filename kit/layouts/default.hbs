@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>{{site.title}}</title>
+
+    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="canonical" href="{{site.canonical}}">
+
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,400italic,300italic,300,700,700italic" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header id="menu">
+      <a href="/" class="logo">{{site.title}}</a>
+      <hr>
+      {{{menu}}}
+    </header>
+
+    <main id="content">
+      {{{@body}}}
+    </main>
+
+    <footer id="footer">
+      <hr>
+      <p>Copyright {{year}} by {{site.title}} — <a href="/admin/login">Login</a></p>
+    </footer>
+
+  </body>
+
+</html>
