@@ -11,7 +11,7 @@ program.parse(process.argv)
 
 const directory = program.args[program.args.length - 1]
 const targetDir = directory ? path.resolve(process.cwd(), directory) : process.cwd()
-const kit = __dirname + '/../kit'
+const kit = path.normalize(__dirname + '/../kit')
 
 if (path.basename(targetDir) == 'kit') {
   console.log('You shouldn\'t run ' + 'init'.gray + ' in here.')
