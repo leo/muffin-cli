@@ -2,7 +2,6 @@
 
 const path = require('path')
 const fs = require('fs-extra')
-const walk = require('walk')
 const colors = require('colors')
 const mkdirp = require('mkdirp')
 const program = require('commander')
@@ -13,7 +12,7 @@ const directory = program.args[program.args.length - 1]
 const targetDir = directory ? path.resolve(process.cwd(), directory) : process.cwd()
 const kit = path.normalize(__dirname + '/../kit')
 
-if (path.basename(targetDir) == 'kit') {
+if (targetDir == kit) {
   console.log('You shouldn\'t run ' + 'init'.gray + ' in here.')
   console.log('Please run it somewhere outside of the project.')
 
