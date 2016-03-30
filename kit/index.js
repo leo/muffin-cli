@@ -1,12 +1,6 @@
-const app = require('muffin')
-const router = app.router
+export async function onListen() {
+  const port = this.address().port
+  const url = 'http://localhost:' + port
 
-router.get('/', function *(next) {
-  console.log('Visited the front page!')
-  yield next
-})
-
-app.use(router.routes())
-app.use(router.allowedMethods())
-
-app.listen(2000)
+  console.log('Muffin is running: ' + url)
+}

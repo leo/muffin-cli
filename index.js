@@ -11,5 +11,6 @@ app
 
 app
   .command('new', 'Generate the boilerplate for a new site')
+  .command('serve', 'Serve your site locally')
 
 app.parse(process.argv)

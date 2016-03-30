@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const koa = require('koa')
 const serve = require('koa-static')
 const mount = require('koa-mount')
@@ -8,9 +10,9 @@ const sendfile = require('koa-sendfile')
 const bodyParser = require('koa-body')
 const jwt = require('koa-jwt')
 
-const db = require('./lib/db')
-const helpers = require('./lib/helpers')
-const log = require('./lib/log')
+const db = require('../lib/db')
+const helpers = require('../lib/helpers')
+const log = require('../lib/log')
 
 const app = koa()
 const rope = db.rope
@@ -42,7 +44,7 @@ router.use(bodyParser({
 
 function getRoutes (path) {
   // Retrieve routes from passed path
-  return require('./routes/' + path).routes()
+  return require('../routes/' + path).routes()
 }
 
 // Register media routes and API
@@ -50,11 +52,11 @@ router.use('/uploads*', getRoutes('uploads'))
 router.use('/api', getRoutes('api'))
 
 // Serve assets of admin area...
-app.use(mount('/admin', serve(__dirname + '/dist')))
+app.use(mount('/admin', serve(__dirname + '/../dist')))
 
 // ...and the Ember app
 router.get('/admin*', function *() {
-  yield* sendfile.call(this, __dirname + '/dist/index.html')
+  yield* sendfile.call(this, __dirname + '/../dist/index.html')
   if (!this.status) this.throw(404)
 })
 
@@ -79,7 +81,7 @@ app.use(function *(next){
   console.log('%s %s - %s', this.method, this.url, ms)
 })
 
-const frontRouter = require('./routes/front')
+const frontRouter = require('../routes/front')
 
 // Enable new instance of rendering engine for front
 frontRouter.use(handlebars({
@@ -94,5 +96,12 @@ frontRouter.use(handlebars({
 // Register front routes
 router.use('/', frontRouter.routes())
 
-app.router = router
-module.exports = app
+app.use(router.routes())
+app.use(router.allowedMethods())
+
+app.listen(2000, function () {
+  const port = this.address().port
+  const url = 'http://localhost:' + port
+
+  console.log('Muffin is running: ' + url)
+})
