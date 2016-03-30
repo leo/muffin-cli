@@ -16,9 +16,7 @@
     "url": "git+https://github.com/small-cake/core.git"
   },
   "bin": {
-    "muffin": "index.js",
-    "muffin-new": "bin/new.js",
-    "muffin-serve": "bin/serve.js"
+    "muffin": "bin/muffin"
   },
   "engines": {
     "node": ">= 4.0.0"
