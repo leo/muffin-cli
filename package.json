@@ -20,7 +20,8 @@
   },
   "bin": {
     "muffin": "index.js",
-    "muffin-new": "bin/new.js"
+    "muffin-new": "bin/new.js",
+    "muffin-serve": "bin/serve.js"
   },
   "engines": {
     "node": ">= 4.0.0"
