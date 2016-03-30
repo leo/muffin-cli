@@ -20,6 +20,7 @@ const app = koa()
 const rope = db.rope
 
 program
+  .option('-w, --watch', 'Rebuild site if files change')
   .option('-p, --port <port>', 'The port on which your site will be available', parseInt)
   .parse(process.argv)
 
@@ -100,5 +101,17 @@ app.listen(program.port || process.env.PORT, function () {
   const port = this.address().port
   const url = 'http://localhost:' + port
 
-  console.log('Muffin is running: ' + url)
+  if (!program.watch) {
+    return console.log('Muffin is running: ' + url)
+  }
+
+  const browserSync = require('browser-sync').create()
+
+  browserSync.init({
+    proxy: url,
+    logPrefix: 'muffin',
+    logFileChanges: false,
+    notify: false,
+    ui: false
+  })
 })
