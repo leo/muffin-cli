@@ -29,8 +29,19 @@ walker.on('data', item => {
 walker.on('end', () => {
   files.shift()
 
+  const replaceDots = [
+    'name',
+    'base'
+  ]
+
   for (var file of files) {
-    var dest = path.join(targetDir, path.relative(kit, file))
+    var filePath = path.parse(file)
+
+    for (var property of replaceDots) {
+      filePath[property] = filePath[property].replace('_', '.')
+    }
+
+    var dest = path.join(targetDir, path.relative(kit, path.format(filePath)))
 
     try {
       fs.ensureDirSync(path.dirname(dest))
@@ -41,7 +52,7 @@ walker.on('end', () => {
     try {
       fs.copySync(file, dest)
     } catch (err) {
-      return console.error(errr)
+      return console.error(err)
     }
   }
 
