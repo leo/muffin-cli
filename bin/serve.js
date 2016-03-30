@@ -20,7 +20,7 @@ const app = koa()
 const rope = db.rope
 
 program
-  .option('-p, --port <port>', 'The port on which your site will be available')
+  .option('-p, --port <port>', 'The port on which your site will be available', parseInt)
   .parse(process.argv)
 
 process.on('SIGINT', () => rope.close(() => {
