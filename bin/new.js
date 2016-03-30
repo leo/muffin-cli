@@ -12,9 +12,9 @@ program.parse(process.argv)
 
 const directory = program.args[program.args.length - 1]
 const targetDir = directory ? path.resolve(process.cwd(), directory) : process.cwd()
-const kit = path.normalize(__dirname + '/../kit')
+const template = path.normalize(__dirname + '/../template')
 
-if (targetDir == kit) {
+if (targetDir == template) {
   console.log('You shouldn\'t run ' + 'init'.gray + ' in here.')
   console.log('Please run it somewhere outside of the project.')
 
@@ -67,7 +67,7 @@ const prompts = [
 ]
 
 inquirer.prompt(prompts, answers => {
-  const walker = fs.walk(kit)
+  const walker = fs.walk(template)
   var files = []
 
   walker.on('data', item => {
@@ -89,7 +89,7 @@ inquirer.prompt(prompts, answers => {
         filePath[property] = filePath[property].replace('_', '.')
       }
 
-      var dest = path.join(targetDir, path.relative(kit, path.format(filePath)))
+      var dest = path.join(targetDir, path.relative(template, path.format(filePath)))
 
       try {
         fs.ensureDirSync(path.dirname(dest))
