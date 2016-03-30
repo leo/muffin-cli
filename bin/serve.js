@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const koa = require('koa')
 const program = require('commander')
 
@@ -10,9 +12,9 @@ const sendfile = require('koa-sendfile')
 const bodyParser = require('koa-body')
 const jwt = require('koa-jwt')
 
-const db = require('../utils/db')
-const helpers = require('../utils/helpers')
-const log = require('../utils/log')
+const db = require('../lib/db')
+const helpers = require('../lib/helpers')
+const log = require('../lib/log')
 
 const app = koa()
 const rope = db.rope
@@ -39,7 +41,7 @@ router.use(bodyParser({
 
 function getRoutes (path) {
   // Retrieve routes from passed path
-  return require('../utils/routes/' + path).routes()
+  return require('../lib/routes/' + path).routes()
 }
 
 // Register media routes and API
@@ -76,7 +78,7 @@ app.use(function *(next){
   console.log('%s %s - %s', this.method, this.url, ms)
 })
 
-const frontRouter = require('../utils/routes/front')
+const frontRouter = require('../lib/routes/front')
 
 // Enable new instance of rendering engine for front
 frontRouter.use(handlebars({

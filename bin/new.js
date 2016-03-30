@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const path = require('path')
 const fs = require('fs-extra')
 const program = require('commander')
@@ -10,7 +12,7 @@ program.parse(process.argv)
 
 const directory = program.args[program.args.length - 1]
 const targetDir = directory ? path.resolve(process.cwd(), directory) : process.cwd()
-const template = path.normalize(__dirname + '/../../blueprints/default')
+const template = path.normalize(__dirname + '/../template')
 
 if (targetDir == template) {
   console.log('You shouldn\'t run ' + 'init'.gray + ' in here.')
