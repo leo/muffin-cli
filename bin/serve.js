@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const koa = require('koa')
+const program = require('commander')
+
 const serve = require('koa-static')
 const mount = require('koa-mount')
 const compress = require('koa-compress')
@@ -17,18 +19,13 @@ const log = require('../lib/log')
 const app = koa()
 const rope = db.rope
 
+program
+  .option('-p, --port <port>', 'The port on which your site will be available')
+  .parse(process.argv)
+
 process.on('SIGINT', () => rope.close(() => {
   process.exit(0)
 }))
-
-if (module.parent) {
-  require('dotenv').config({
-    path: process.cwd() + '/.env'
-  })
-} else {
-  // This is fine since it's only being used in the development env
-  process.env.SESSION_SECRET = 'random'
-}
 
 app.use(compress())
 
