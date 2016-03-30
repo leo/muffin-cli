@@ -4,9 +4,6 @@
   "description": "The 21st century way of building websites",
   "preferGlobal": true,
   "main": "index.js",
-  "scripts": {
-    "start": "nodemon index -i dist"
-  },
   "files": [
     "dist",
     "index.js",
