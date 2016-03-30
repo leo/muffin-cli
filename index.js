@@ -13,6 +13,7 @@ require('dotenv').config({
 })
 
 const configDefaults = {
+  port: 2000,
   db: {
     host: 'localhost',
     user: 'admin',
