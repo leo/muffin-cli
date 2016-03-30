@@ -4,7 +4,7 @@ const app = require('commander')
 const dotenv = require('dotenv')
 const updateNotifier = require('update-notifier')
 
-const pkg = require(__dirname + '/package.json')
+const pkg = require(__dirname + '/../package.json')
 updateNotifier({ pkg }).notify()
 
 require('dotenv').config({
@@ -44,7 +44,7 @@ for (var property in configDefaults) {
 }
 
 app
-  .version(require(__dirname + '/package.json').version)
+  .version(pkg.version)
 
 app
   .command('new', 'Generate the boilerplate for a new site')
