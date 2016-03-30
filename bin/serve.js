@@ -35,8 +35,6 @@ router.use('/api', jwt({
   path: [/token-auth/, /token-refresh/, /reset-password/]
 }))
 
-console.log(process.env.SESSION_SECRET)
-
 router.use(bodyParser({
   multipart: true
 }))
@@ -98,7 +96,7 @@ router.use('/', frontRouter.routes())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-app.listen(2000, function () {
+app.listen(program.port || process.env.PORT, function () {
   const port = this.address().port
   const url = 'http://localhost:' + port
 
