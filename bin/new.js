@@ -2,10 +2,11 @@
 
 const path = require('path')
 const fs = require('fs-extra')
-const colors = require('colors')
-const mkdirp = require('mkdirp')
 const program = require('commander')
 const inquirer = require('inquirer')
+const gitConfig = require('git-config')
+const colors = require('colors')
+const mkdirp = require('mkdirp')
 
 program.parse(process.argv)
 
@@ -31,7 +32,18 @@ const prompts = [
   },
   {
     name: 'author',
-    message: 'Author'
+    message: 'Author',
+    default () {
+      var git
+
+      try {
+        git = gitConfig.sync()
+      } catch (err) {
+        git = false
+      }
+
+      return git ? git.user.name : null
+    }
   },
   {
     name: 'db_host',
