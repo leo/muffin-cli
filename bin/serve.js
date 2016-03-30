@@ -44,7 +44,7 @@ router.use(bodyParser({
 
 function getRoutes (path) {
   // Retrieve routes from passed path
-  return require('../routes/' + path).routes()
+  return require('../lib/routes/' + path).routes()
 }
 
 // Register media routes and API
@@ -81,7 +81,7 @@ app.use(function *(next){
   console.log('%s %s - %s', this.method, this.url, ms)
 })
 
-const frontRouter = require('../routes/front')
+const frontRouter = require('../lib/routes/front')
 
 // Enable new instance of rendering engine for front
 frontRouter.use(handlebars({
