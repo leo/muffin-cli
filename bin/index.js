@@ -47,6 +47,7 @@ app
   .version(pkg.version)
 
 app
+  .command('build', 'Build your site')
   .command('new', 'Generate the boilerplate for a new site')
   .command('serve', 'Serve your site locally')
 
