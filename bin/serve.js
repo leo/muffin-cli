@@ -35,6 +35,8 @@ router.use('/api', jwt({
   path: [/token-auth/, /token-refresh/, /reset-password/]
 }))
 
+console.log(process.env.SESSION_SECRET)
+
 router.use(bodyParser({
   multipart: true
 }))

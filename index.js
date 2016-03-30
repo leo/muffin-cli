@@ -23,7 +23,11 @@ const configDefaults = {
 }
 
 function setVariable (name, value) {
-  process.env[name.toUpperCase()] = value
+  name = name.toUpperCase()
+
+  if (!process.env[name]) {
+    process.env[name] = value
+  }
 }
 
 for (var property in configDefaults) {
