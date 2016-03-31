@@ -2,6 +2,7 @@
 
 const koa = require('koa')
 const program = require('commander')
+const exec = require('child_process').execSync
 
 const serve = require('koa-static')
 const mount = require('koa-mount')
@@ -27,6 +28,13 @@ program
 process.on('SIGINT', () => rope.close(() => {
   process.exit(0)
 }))
+
+try {
+  exec('muffin build', {stdio: [0, 1]})
+} catch (err) {
+  console.error(err)
+  process.exit(1)
+}
 
 app.use(compress())
 

@@ -4,6 +4,7 @@ const broccoli = require('broccoli')
 const findup = require('findup-sync')
 const ncp = require('ncp')
 const path = require('path')
+const colors = require('colors')
 
 // Taken from grunt-broccoli-build
 function loadBrocfile () {
@@ -32,9 +33,9 @@ builder.build().then(results => {
     if (err) throw err
 
     if (buildTime) {
-      console.log('Built in ' + Math.floor(buildTime / 1e6) + 'ms!')
+      console.log(`Finished building after ${Math.floor(buildTime / 1e6)}ms.`.green)
     } else {
-      console.log('Built!')
+      console.log('Finished building.'.green)
     }
 
     builder.cleanup().catch(err => console.error(err))
