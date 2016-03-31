@@ -35,10 +35,13 @@ builder.build().then(results => {
   const dir = typeof results === 'string' ? results : results.directory
   const buildTime = results.totalTime
 
+  // Copy files from tmp folder to the destination directory
+  // And make sure to follow symlinks while doing so
   ncp(dir, process.cwd() + '/dist', {dereference: true}, err => {
     if (err) throw err
 
     if (buildTime) {
+      // The original built time is in nanoseconds, so we need to convert it to milliseconds
       utils.log(chalk.green(`Finished building after ${Math.floor(buildTime / 1e6)}ms.`))
     } else {
       utils.log(chalk.green('Finished building.'))
