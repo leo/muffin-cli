@@ -1,6 +1,6 @@
 # Contribute
 
-Muffin currently consists of two parts: The [Ember app](https://github.com/small-cake/client) that runs in the user's browser and the server-side [API](https://github.com/small-cake/server) that supplies the data and processes your website's templates and contents.
+Muffin currently consists of two parts: The [Ember app](https://github.com/muffin-cms/client) that runs in the user's browser and the server-side [API](https://github.com/muffin-cms/server) that supplies the data and processes your website's templates and contents.
 
 The following guideline will show you how to set up both on your local machine to be able to start contributing code. But before you do anything, please make sure that your npm permissions are [fixed](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
 
