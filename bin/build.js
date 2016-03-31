@@ -5,7 +5,13 @@ const findup = require('findup-sync')
 const ncp = require('ncp')
 const path = require('path')
 const chalk = require('chalk')
+const program = require('commander')
+
 const utils = require('../lib/utils')
+
+program
+  .option('-w, --watch', 'Rebuild site if files change')
+  .parse(process.argv)
 
 if (!utils.isSite()) {
   utils.log(chalk.red('No site in here!'))
