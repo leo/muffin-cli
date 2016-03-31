@@ -47,8 +47,9 @@
   "dependencies": {
     "bcrypt": "^0.8.5",
     "broccoli": "^0.16.9",
+    "broccoli-merge-trees": "^1.1.1",
+    "broccoli-sass": "^0.7.0",
     "browser-sync": "^2.11.2",
-    "chokidar": "^1.4.3",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
     "dotenv": "^2.0.0",
@@ -65,13 +66,9 @@
     "koa-router": "^5.4.0",
     "koa-sendfile": "^1.1.1",
     "koa-static": "^2.0.0",
-    "mkdirp": "^0.5.1",
     "mongoose": "^4.4.10",
-    "node-sass": "^3.4.2",
     "query-string": "^4.0.2",
-    "uglify-js": "^2.6.2",
-    "update-notifier": "^0.6.3",
-    "walk": "^2.3.9"
+    "update-notifier": "^0.6.3"
   },
   "devDependencies": {
     "nodemon": "^1.9.1"
