@@ -37,6 +37,23 @@ function loadBrocfile () {
 const tree = loadBrocfile()
 const builder = new broccoli.Builder(tree)
 
+function startWatching () {
+  const Watcher = require('broccoli-sane-watcher')
+  const watch = new Watcher(builder)
+
+  process.on('SIGINT', () => {
+    watch.close()
+    process.exit(0)
+  })
+
+  watch.on('change', results => {
+    if (!results.filePath) return
+    console.log(results)
+  })
+
+  watch.on('error', err => utils.log(err))
+}
+
 builder.build().then(results => {
   const dir = typeof results === 'string' ? results : results.directory
   const buildTime = results.totalTime
@@ -51,6 +68,10 @@ builder.build().then(results => {
       utils.log(chalk.green(`Finished building after ${Math.floor(buildTime / 1e6)}ms.`))
     } else {
       utils.log(chalk.green('Finished building.'))
+    }
+
+    if (program.watch) {
+      return startWatching()
     }
 
     builder.cleanup().catch(err => utils.log(err))
