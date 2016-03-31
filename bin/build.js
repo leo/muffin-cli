@@ -18,23 +18,7 @@ if (!utils.isSite()) {
   process.exit(1)
 }
 
-// Taken from grunt-broccoli-build
-function loadBrocfile () {
-  const brocfile = findup('build.js', {
-    nocase: true,
-    cwd: process.cwd()
-  })
-
-  if (!brocfile) {
-    throw new Error('build.js not found')
-  }
-
-  // cwd into the Brocfile's dir so its deps are loaded correctly.
-  process.chdir(path.dirname(brocfile))
-  return require(brocfile)
-}
-
-const tree = loadBrocfile()
+const tree = broccoli.loadBrocfile()
 const builder = new broccoli.Builder(tree)
 
 function startWatching () {
