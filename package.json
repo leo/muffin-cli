@@ -46,6 +46,7 @@
   "homepage": "http://muffin.cafe",
   "dependencies": {
     "bcrypt": "^0.8.5",
+    "broccoli": "^0.16.9",
     "browser-sync": "^2.11.2",
     "chokidar": "^1.4.3",
     "colors": "^1.1.2",
