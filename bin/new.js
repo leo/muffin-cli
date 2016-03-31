@@ -66,11 +66,24 @@ const prompts = [
   }
 ]
 
+const ignore = [
+  'dist',
+  'node_modules'
+]
+
 inquirer.prompt(prompts, answers => {
   const walker = fs.walk(template)
   var files = []
 
   walker.on('data', item => {
+    for (var dir of ignore) {
+      if (item.path.indexOf(dir) == -1) {
+        continue
+      }
+
+      return
+    }
+
     files.push(item.path)
   })
 
