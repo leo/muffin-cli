@@ -9,7 +9,9 @@ const chalk = require('chalk')
 const mkdirp = require('mkdirp')
 const utils = require('../lib/utils')
 
-program.parse(process.argv)
+program
+  .option('-f, --force', 'Overwrite the existing site')
+  .parse(process.argv)
 
 const directory = program.args[program.args.length - 1]
 const targetDir = directory ? path.resolve(process.cwd(), directory) : process.cwd()
@@ -20,6 +22,11 @@ if (targetDir == template) {
   utils.log('Please run it somewhere outside of the project.')
 
   process.exit(0)
+}
+
+if (utils.isSite() && !program.force) {
+  utils.log(chalk.red('There\'s already a site in here!'))
+  process.exit(1)
 }
 
 const prompts = [
@@ -66,21 +73,6 @@ const prompts = [
     message: 'DB password'
   }
 ]
-
-if (utils.isSite()) {
-  inquirer.prompt([{
-    type: 'confirm',
-    name: 'maybe',
-    message: 'Already a site in here. Want to overwrite it?'
-  }], answers => {
-    if (!answers.maybe) {
-      process.exit(1)
-    }
-
-    utils.log("Your wish shall be my command!\n")
-    inquirer.prompt(prompts, generateSite)
-  })
-}
 
 const ignore = [
   'dist',
@@ -136,3 +128,5 @@ const generateSite = answers => {
     utils.log('Generated new site in ' + chalk.gray(targetDir))
   })
 }
+
+inquirer.prompt(prompts, generateSite)
