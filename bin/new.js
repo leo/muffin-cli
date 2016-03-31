@@ -11,6 +11,7 @@ const utils = require('../lib/utils')
 
 program
   .option('-f, --force', 'Overwrite the existing site')
+  .option('-y, --yes', 'Skip all questions')
   .parse(process.argv)
 
 const directory = program.args[program.args.length - 1]
@@ -129,4 +130,8 @@ const generateSite = answers => {
   })
 }
 
-inquirer.prompt(prompts, generateSite)
+if (program.yes) {
+  generateSite()
+} else {
+  inquirer.prompt(prompts, generateSite)
+}
