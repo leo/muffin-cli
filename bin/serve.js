@@ -35,6 +35,7 @@ if (!utils.isSite()) {
   process.exit(1)
 }
 
+// Build before serving if "dist" directory doesn't exist
 if (!utils.exists(process.cwd() + '/dist')) {
   try {
     exec('muffin build', {stdio: [0, 1]})

@@ -20,6 +20,8 @@ const configDefaults = {
     password: 1234,
     name: 'muffin'
   },
+
+  // This is fine, since it's just the default
   session_secret: 'random'
 }
 

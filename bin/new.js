@@ -14,8 +14,13 @@ program
   .option('-y, --yes', 'Skip all questions')
   .parse(process.argv)
 
+// Get the directory, if one was defined
 const directory = program.args[program.args.length - 1]
+
+// Resolve the path of the directory or use the current working dir
 const targetDir = directory ? path.resolve(process.cwd(), directory) : process.cwd()
+
+// Just the normalized path to the place where the blueprints live
 const template = path.normalize(__dirname + '/../template')
 
 if (targetDir == template) {
@@ -97,8 +102,12 @@ const generateSite = answers => {
   })
 
   walker.on('end', () => {
+    // Strip away the "/template" folder itself
+    // We only need its contents
     files.shift()
 
+    // The properties of a parsed file path whose first
+    // letter shall be replaced with a dot
     const replaceDots = [
       'name',
       'base'
@@ -107,18 +116,22 @@ const generateSite = answers => {
     for (var file of files) {
       var filePath = path.parse(file)
 
+      // Take care of the dotfiles
       for (var property of replaceDots) {
         filePath[property] = filePath[property].replace('_', '.')
       }
 
+      // Generate the destination path
       var dest = path.join(targetDir, path.relative(template, path.format(filePath)))
 
+      // Make sure the destination exists
       try {
         fs.ensureDirSync(path.dirname(dest))
       } catch (err) {
         return utils.log(err)
       }
 
+      // If so, copy the blueprints
       try {
         fs.copySync(file, dest)
       } catch (err) {
