@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/small-cake/core.git"
+    "url": "git+https://github.com/muffin-cms/core.git"
   },
   "bin": {
     "muffin": "bin/index.js",
@@ -41,7 +41,7 @@
   "author": "Leonard Lamprecht <mindrun@icloud.com> (http://leo.im)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/small-cake/core/issues"
+    "url": "https://github.com/muffin-cms/core/issues"
   },
   "homepage": "http://muffin.cafe",
   "dependencies": {
