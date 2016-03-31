@@ -47,12 +47,11 @@
   "dependencies": {
     "bcrypt": "^0.8.5",
     "broccoli": "^0.16.9",
-    "broccoli-merge-trees": "^1.1.1",
-    "broccoli-sass": "^0.7.0",
     "browser-sync": "^2.11.2",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
     "dotenv": "^2.0.0",
+    "findup-sync": "^0.3.0",
     "fs-extra": "^0.26.7",
     "git-config": "0.0.7",
     "gridfs-stream": "^1.1.1",
@@ -67,6 +66,7 @@
     "koa-sendfile": "^1.1.1",
     "koa-static": "^2.0.0",
     "mongoose": "^4.4.10",
+    "ncp": "^2.0.0",
     "query-string": "^4.0.2",
     "update-notifier": "^0.6.3"
   },
