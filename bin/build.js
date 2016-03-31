@@ -5,6 +5,12 @@ const findup = require('findup-sync')
 const ncp = require('ncp')
 const path = require('path')
 const colors = require('colors')
+const utils = require('../lib/utils')
+
+if (!utils.isSite()) {
+  console.error('No site in here!'.red)
+  process.exit(1)
+}
 
 // Taken from grunt-broccoli-build
 function loadBrocfile () {
