@@ -5,8 +5,9 @@ const fs = require('fs-extra')
 const program = require('commander')
 const inquirer = require('inquirer')
 const gitConfig = require('git-config')
-const colors = require('colors')
+const chalk = require('chalk')
 const mkdirp = require('mkdirp')
+const utils = require('../lib/utils')
 
 program.parse(process.argv)
 
@@ -15,8 +16,8 @@ const targetDir = directory ? path.resolve(process.cwd(), directory) : process.
 const template = path.normalize(__dirname + '/../template')
 
 if (targetDir == template) {
-  console.log('You shouldn\'t run ' + 'init'.gray + ' in here.')
-  console.log('Please run it somewhere outside of the project.')
+  utils.log('You shouldn\'t run ' + chalk.gray('init') + ' in here.')
+  utils.log('Please run it somewhere outside of the project.')
 
   process.exit(0)
 }
@@ -107,16 +108,16 @@ inquirer.prompt(prompts, answers => {
       try {
         fs.ensureDirSync(path.dirname(dest))
       } catch (err) {
-        return console.error(err)
+        return utils.log(err)
       }
 
       try {
         fs.copySync(file, dest)
       } catch (err) {
-        return console.error(err)
+        return utils.log(err)
       }
     }
 
-    console.log('Generated new site in ' + targetDir.gray)
+    utils.log('Generated new site in ' + chalk.gray(targetDir))
   })
 })
