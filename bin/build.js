@@ -37,11 +37,9 @@ builder.build().then(results => {
       console.log('Built!')
     }
 
-    builder.cleanup().then(function () {
-      console.log('cleaned up')
-    })
+    builder.cleanup().catch(err => console.error(err))
   })
 
 }).catch(err => {
-  console.log(err)
+  throw err
 })
