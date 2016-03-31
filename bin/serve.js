@@ -36,11 +36,13 @@ if (!utils.isSite()) {
   process.exit(1)
 }
 
-try {
-  exec('muffin build', {stdio: [0, 1]})
-} catch (err) {
-  console.error(err)
-  process.exit(1)
+if (!utils.exists(process.cwd() + '/dist')) {
+  try {
+    exec('muffin build', {stdio: [0, 1]})
+  } catch (err) {
+    console.error(err)
+    process.exit(1)
+  }
 }
 
 app.use(compress())
