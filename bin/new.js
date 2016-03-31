@@ -22,11 +22,6 @@ if (targetDir == template) {
   process.exit(0)
 }
 
-if (utils.isSite()) {
-  utils.log(chalk.red('There\'s already a site in here!'))
-  process.exit(1)
-}
-
 const prompts = [
   {
     name: 'handle',
@@ -72,12 +67,27 @@ const prompts = [
   }
 ]
 
+if (utils.isSite()) {
+  inquirer.prompt([{
+    type: 'confirm',
+    name: 'maybe',
+    message: 'Already a site in here. Want to overwrite it?'
+  }], answers => {
+    if (!answers.maybe) {
+      process.exit(1)
+    }
+
+    utils.log("Your wish shall be my command!\n")
+    inquirer.prompt(prompts, generateSite)
+  })
+}
+
 const ignore = [
   'dist',
   'node_modules'
 ]
 
-inquirer.prompt(prompts, answers => {
+const generateSite = answers => {
   const walker = fs.walk(template)
   var files = []
 
@@ -125,4 +135,4 @@ inquirer.prompt(prompts, answers => {
 
     utils.log('Generated new site in ' + chalk.gray(targetDir))
   })
-})
+}
