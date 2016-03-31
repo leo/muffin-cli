@@ -22,6 +22,11 @@ if (targetDir == template) {
   process.exit(0)
 }
 
+if (utils.isSite()) {
+  utils.log(chalk.red('There\'s already a site in here!'))
+  process.exit(1)
+}
+
 const prompts = [
   {
     name: 'handle',
