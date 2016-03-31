@@ -2,6 +2,7 @@
 
 const koa = require('koa')
 const program = require('commander')
+const colors = require('colors')
 const exec = require('child_process').execSync
 
 const serve = require('koa-static')
@@ -16,6 +17,7 @@ const jwt = require('koa-jwt')
 const db = require('../lib/db')
 const helpers = require('../lib/helpers')
 const log = require('../lib/log')
+const utils = require('../lib/utils')
 
 const app = koa()
 const rope = db.rope
@@ -28,6 +30,11 @@ program
 process.on('SIGINT', () => rope.close(() => {
   process.exit(0)
 }))
+
+if (!utils.isSite()) {
+  console.error('No site in here!'.red)
+  process.exit(1)
+}
 
 try {
   exec('muffin build', {stdio: [0, 1]})
