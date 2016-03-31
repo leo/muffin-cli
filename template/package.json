@@ -7,8 +7,5 @@
     "start": "muffin serve -w"
   },
   "author": "Your name",
-  "devDependencies": {
-    "broccoli-merge-trees": "^1.1.1",
-    "broccoli-sass": "^0.7.0"
-  }
+  "devDependencies": {}
 }
