@@ -4,11 +4,11 @@ const broccoli = require('broccoli')
 const findup = require('findup-sync')
 const ncp = require('ncp')
 const path = require('path')
-const colors = require('colors')
+const chalk = require('chalk')
 const utils = require('../lib/utils')
 
 if (!utils.isSite()) {
-  console.error('No site in here!'.red)
+  utils.log(chalk.red('No site in here!'))
   process.exit(1)
 }
 
@@ -39,12 +39,12 @@ builder.build().then(results => {
     if (err) throw err
 
     if (buildTime) {
-      console.log(`Finished building after ${Math.floor(buildTime / 1e6)}ms.`.green)
+      utils.log(chalk.green(`Finished building after ${Math.floor(buildTime / 1e6)}ms.`))
     } else {
-      console.log('Finished building.'.green)
+      utils.log(chalk.green('Finished building.'))
     }
 
-    builder.cleanup().catch(err => console.error(err))
+    builder.cleanup().catch(err => utils.log(err))
   })
 
 }).catch(err => {
