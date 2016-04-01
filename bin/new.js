@@ -7,6 +7,8 @@ const inquirer = require('inquirer')
 const gitConfig = require('git-config')
 const chalk = require('chalk')
 const mkdirp = require('mkdirp')
+const npm = require('npm')
+const ora = require('ora')
 const utils = require('../lib/utils')
 
 program
@@ -139,7 +141,27 @@ const generateSite = answers => {
       }
     }
 
-    utils.log('Generated new site in ' + chalk.gray(targetDir))
+    const spinner = ora(chalk.green('Installing missing dependencies'))
+    spinner.color = 'green'
+    spinner.start()
+
+    process.chdir(targetDir)
+
+    npm.load({
+      loaded: true,
+      loglevel: 'silent'
+    }, err => {
+      if (err) return utils.log(err)
+
+      npm.commands.install([], (err, data) => {
+        if (err) return utils.log(err)
+
+        if (data) {
+          spinner.stop()
+          utils.log('Generated new site in ' + chalk.gray(targetDir))
+        }
+      })
+    })
   })
 }
 
