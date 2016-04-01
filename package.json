@@ -8,7 +8,7 @@
     "bin",
     "data",
     "lib",
-    "template"
+    "template",
     "dist"
   ],
   "repository": {
