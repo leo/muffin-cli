@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "The 21st century way of building websites",
   "preferGlobal": true,
+  "private": true,
   "main": "index.js",
   "files": [
     "bin",
