@@ -22,10 +22,7 @@ const directory = program.args[program.args.length - 1]
 // Resolve the path of the directory or use the current working dir
 const targetDir = directory ? path.resolve(process.cwd(), directory) : process.cwd()
 
-// Just the normalized path to the place where the blueprints live
-const template = path.normalize(__dirname + '/../template')
-
-if (targetDir == template) {
+if (targetDir == path.normalize(__dirname + '/../template')) {
   utils.log('You shouldn\'t run ' + chalk.gray('init') + ' in here.')
   utils.log('Please run it somewhere outside of the project.')
 
@@ -82,6 +79,4 @@ const prompts = [
   }
 ]
 
-inquirer.prompt(prompts, answers => {
-  new Generator(answers, targetDir, template)
-})
+inquirer.prompt(prompts, answers => new Generator(answers, targetDir))
