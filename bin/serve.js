@@ -93,7 +93,7 @@ app.use(function *(next){
     return
   }
 
-  console.log('%s %s - %s', this.method, this.url, ms)
+  console.log(chalk.blue('[muffin]') + ' %s %s - %sms', this.method, this.url, ms)
 })
 
 const frontRouter = require('../lib/routes/front')
@@ -118,5 +118,5 @@ app.listen(program.port || process.env.PORT, function () {
   const port = this.address().port
   const url = 'http://localhost:' + port
 
-  console.log('Muffin is running: ' + url)
+  console.log(chalk.blue('[muffin]') + ' ' + 'Running at ' + chalk.grey(url))
 })
