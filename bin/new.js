@@ -9,7 +9,7 @@ const chalk = require('chalk')
 const mkdirp = require('mkdirp')
 
 const utils = require('../lib/utils')
-const Generator = require('../lib/generator')
+const Generator = require('../lib/tasks/generate')
 
 program
   .option('-f, --force', 'Overwrite the existing site')
