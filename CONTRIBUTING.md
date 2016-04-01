@@ -1,6 +1,6 @@
 # Contribute
 
-Muffin currently consists of two parts: The [Ember app](https://github.com/muffin-cms/client) that runs in the user's browser and the [CLI](https://github.com/muffin-cms/app) (also called "core" or "main package") that supplies the data and processes your website's contents.
+Muffin currently consists of two parts: The [Ember app](https://github.com/muffinjs/client) that runs in the user's browser and the [CLI](https://github.com/muffinjs/app) (also called "core" or "main package") that supplies the data and processes your website's contents.
 
 The following guideline will show you how to set up both on your local machine to be able to start contributing code. But before you do anything, please make sure that your npm permissions are [fixed](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
 

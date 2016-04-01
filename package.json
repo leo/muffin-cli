@@ -10,7 +10,7 @@
     "muffin-build": "bin/build.js"
   },
   "bugs": {
-    "url": "https://github.com/muffin-cms/app/issues"
+    "url": "https://github.com/muffinjs/app/issues"
   },
   "dependencies": {
     "bcrypt": "^0.8.5",
@@ -71,6 +71,6 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/muffin-cms/app.git"
+    "url": "git+https://github.com/muffinjs/app.git"
   }
 }
