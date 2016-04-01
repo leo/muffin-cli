@@ -5,11 +5,11 @@
   "preferGlobal": true,
   "main": "index.js",
   "files": [
-    "dist",
-    "index.js",
+    "bin",
+    "data",
     "lib",
-    "models",
-    "routes"
+    "template"
+    "dist"
   ],
   "repository": {
     "type": "git",
