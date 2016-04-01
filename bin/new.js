@@ -1,4 +1,4 @@
-#!/usr/bin/env node --use_strict
+#!/usr/bin/env node --harmony
 
 const path = require('path')
 const fs = require('fs-extra')
@@ -7,12 +7,9 @@ const inquirer = require('inquirer')
 const gitConfig = require('git-config')
 const chalk = require('chalk')
 const mkdirp = require('mkdirp')
-const npm = require('npm')
-const ora = require('ora')
-const Mongonaut = require('mongonaut')
 
-const exec = require('child_process').execSync
 const utils = require('../lib/utils')
+const Generator = require('../lib/generator')
 
 program
   .option('-f, --force', 'Overwrite the existing site')
@@ -85,129 +82,6 @@ const prompts = [
   }
 ]
 
-const ignore = [
-  'dist',
-  'node_modules'
-]
-
-function setProgressBar (state) {
-  try {
-    exec('npm set progress=' + state.toString(), {stdio: [0, 1]})
-  } catch (err) {
-    throw utils.log(err)
-  }
-}
-
-function insertBlueprints (answers) {
-  const walker = fs.walk(template)
-  var files = []
-
-  walker.on('data', item => {
-    for (var dir of ignore) {
-      if (item.path.indexOf(dir) == -1) {
-        continue
-      }
-
-      return
-    }
-
-    files.push(item.path)
-  })
-
-  walker.on('end', () => {
-    // Strip away the "/template" folder itself
-    // We only need its contents
-    files.shift()
-
-    // The properties of a parsed file path whose first
-    // letter shall be replaced with a dot
-    const replaceDots = [
-      'name',
-      'base'
-    ]
-
-    for (var file of files) {
-      var filePath = path.parse(file)
-
-      // Take care of the dotfiles
-      for (var property of replaceDots) {
-        filePath[property] = filePath[property].replace('_', '.')
-      }
-
-      // Generate the destination path
-      var dest = path.join(targetDir, path.relative(template, path.format(filePath)))
-
-      // Make sure the destination exists
-      try {
-        fs.ensureDirSync(path.dirname(dest))
-      } catch (err) {
-        return utils.log(err)
-      }
-
-      // If so, copy the blueprints
-      try {
-        fs.copySync(file, dest)
-      } catch (err) {
-        return utils.log(err)
-      }
-    }
-
-    const spinner = ora(chalk.green('Installing missing packages via npm'))
-    spinner.color = 'green'
-    spinner.start()
-
-    process.chdir(targetDir)
-
-    npm.load({
-      loaded: false,
-      loglevel: 'silent'
-    }, err => {
-      if (err) return utils.log(err)
-
-      setProgressBar(false)
-
-      npm.commands.install([], (err, data) => {
-        if (err) return utils.log(err)
-
-        if (data) {
-          spinner.stop()
-          utils.log('Generated new site in ' + chalk.gray(targetDir))
-        } else {
-          utils.log(chalk.red('Not able to install dependencies!'))
-        }
-
-        setProgressBar(true)
-      })
-    })
-  })
-}
-
-const generateSite = answers => {
-  const mongonaut = new Mongonaut({
-    user: answers.db_user || '',
-    pwd: answers.db_password || '',
-    db: answers.db_name,
-    collection: 'pages'
-  })
-
-  const dataPath = __dirname + '/../data/'
-  const pages = mongonaut.import(dataPath + 'pages.json')
-
-  mongonaut.set('collection', 'users')
-  const users = mongonaut.import(dataPath + 'users.json')
-
-  Promise.all([pages, users])
-    .then(() => {
-      utils.log(chalk.green('Sucessfully inserted sample data!'))
-      insertBlueprints(answers)
-    })
-    .catch(err => {
-      throw utils.log('Not able to insert sample data!', err)
-    })
-}
-
-if (program.yes) {
-  generateSite()
-} else {
-  inquirer.prompt(prompts, generateSite)
-}
+inquirer.prompt(prompts, answers => {
+  new Generator(answers, targetDir, template)
+})
