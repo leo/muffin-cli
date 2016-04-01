@@ -151,7 +151,7 @@ const generateSite = answers => {
       }
     }
 
-    const spinner = ora(chalk.green('Installing missing dependencies'))
+    const spinner = ora(chalk.green('Installing missing packages via npm'))
     spinner.color = 'green'
     spinner.start()
 
@@ -171,6 +171,8 @@ const generateSite = answers => {
         if (data) {
           spinner.stop()
           utils.log('Generated new site in ' + chalk.gray(targetDir))
+        } else {
+          utils.log(chalk.red('Not able to install dependencies!'))
         }
 
         setProgressBar(true)
