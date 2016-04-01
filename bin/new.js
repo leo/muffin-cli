@@ -9,6 +9,7 @@ const chalk = require('chalk')
 const mkdirp = require('mkdirp')
 const npm = require('npm')
 const ora = require('ora')
+const Mongonaut = require('mongonaut')
 
 const exec = require('child_process').execSync
 const utils = require('../lib/utils')
@@ -97,7 +98,7 @@ function setProgressBar (state) {
   }
 }
 
-const generateSite = answers => {
+function insertBlueprints (answers) {
   const walker = fs.walk(template)
   var files = []
 
@@ -179,6 +180,30 @@ const generateSite = answers => {
       })
     })
   })
+}
+
+const generateSite = answers => {
+  const mongonaut = new Mongonaut({
+    user: answers.db_user || '',
+    pwd: answers.db_password || '',
+    db: answers.db_name,
+    collection: 'pages'
+  })
+
+  const dataPath = __dirname + '/../data/'
+  const pages = mongonaut.import(dataPath + 'pages.json')
+
+  mongonaut.set('collection', 'users')
+  const users = mongonaut.import(dataPath + 'users.json')
+
+  Promise.all([pages, users])
+    .then(() => {
+      utils.log(chalk.green('Sucessfully inserted sample data!'))
+      insertBlueprints(answers)
+    })
+    .catch(err => {
+      throw utils.log('Not able to insert sample data!', err)
+    })
 }
 
 if (program.yes) {
