@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --harmony
 
 const app = require('commander')
 const dotenv = require('dotenv')
