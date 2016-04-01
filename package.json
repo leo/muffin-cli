@@ -1,50 +1,17 @@
 {
   "name": "muffin",
-  "version": "2.0.0",
   "description": "The 21st century way of building websites",
-  "preferGlobal": true,
-  "private": true,
-  "main": "index.js",
-  "files": [
-    "bin",
-    "data",
-    "lib",
-    "template",
-    "dist"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/muffin-cms/app.git"
-  },
+  "version": "2.0.0",
+  "author": "Leonard Lamprecht <mindrun@icloud.com> (http://leo.im)",
   "bin": {
     "muffin": "bin/index.js",
     "muffin-new": "bin/new.js",
     "muffin-serve": "bin/serve.js",
     "muffin-build": "bin/build.js"
   },
-  "engines": {
-    "node": ">= 4.0.0"
-  },
-  "keywords": [
-    "cms",
-    "content",
-    "management",
-    "system",
-    "chocolate"
-  ],
-  "greenkeeper": {
-    "emails": false,
-    "ignore": [
-      "koa-mount",
-      "koa-sendfile"
-    ]
-  },
-  "author": "Leonard Lamprecht <mindrun@icloud.com> (http://leo.im)",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/muffin-cms/app/issues"
   },
-  "homepage": "http://muffin.cafe",
   "dependencies": {
     "bcrypt": "^0.8.5",
     "broccoli": "^0.16.9",
@@ -70,5 +37,38 @@
     "ncp": "^2.0.0",
     "query-string": "^4.0.2",
     "update-notifier": "^0.6.3"
+  },
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "files": [
+    "bin",
+    "data",
+    "lib",
+    "template",
+    "dist"
+  ],
+  "greenkeeper": {
+    "emails": false,
+    "ignore": [
+      "koa-mount",
+      "koa-sendfile"
+    ]
+  },
+  "homepage": "http://muffin.cafe",
+  "keywords": [
+    "chocolate",
+    "cms",
+    "content",
+    "management",
+    "system"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "preferGlobal": true,
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muffin-cms/app.git"
   }
 }
