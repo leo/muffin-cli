@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const broccoli = require('broccoli')
-const findup = require('findup-sync')
 const ncp = require('ncp')
 const path = require('path')
 const chalk = require('chalk')
