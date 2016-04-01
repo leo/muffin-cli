@@ -9,6 +9,8 @@ const chalk = require('chalk')
 const mkdirp = require('mkdirp')
 const npm = require('npm')
 const ora = require('ora')
+
+const exec = require('child_process').execSync
 const utils = require('../lib/utils')
 
 program
@@ -87,6 +89,14 @@ const ignore = [
   'node_modules'
 ]
 
+function setProgressBar (state) {
+  try {
+    exec('npm set progress=' + state.toString(), {stdio: [0, 1]})
+  } catch (err) {
+    throw utils.log(err)
+  }
+}
+
 const generateSite = answers => {
   const walker = fs.walk(template)
   var files = []
@@ -148,10 +158,12 @@ const generateSite = answers => {
     process.chdir(targetDir)
 
     npm.load({
-      loaded: true,
+      loaded: false,
       loglevel: 'silent'
     }, err => {
       if (err) return utils.log(err)
+
+      setProgressBar(false)
 
       npm.commands.install([], (err, data) => {
         if (err) return utils.log(err)
@@ -160,6 +172,8 @@ const generateSite = answers => {
           spinner.stop()
           utils.log('Generated new site in ' + chalk.gray(targetDir))
         }
+
+        setProgressBar(true)
       })
     })
   })
