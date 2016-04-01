@@ -118,17 +118,5 @@ app.listen(program.port || process.env.PORT, function () {
   const port = this.address().port
   const url = 'http://localhost:' + port
 
-  if (!program.watch) {
-    return console.log('Muffin is running: ' + url)
-  }
-
-  const browserSync = require('browser-sync').create()
-
-  browserSync.init({
-    proxy: url,
-    logPrefix: 'muffin',
-    logFileChanges: false,
-    notify: false,
-    ui: false
-  })
+  console.log('Muffin is running: ' + url)
 })
