@@ -1,4 +1,4 @@
-#!/usr/bin/env node --harmony
+#!/usr/bin/env node --use_strict
 
 const koa = require('koa')
 const program = require('commander')
