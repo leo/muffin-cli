@@ -1,4 +1,4 @@
-#!/usr/bin/env node --use_strict
+#!/usr/bin/env node --harmony
 
 const broccoli = require('broccoli')
 const ncp = require('ncp')
