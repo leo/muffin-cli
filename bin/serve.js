@@ -4,6 +4,8 @@ const koa = require('koa')
 const program = require('commander')
 const chalk = require('chalk')
 const exec = require('child_process').execSync
+const enableDestroy = require('server-destroy')
+const http = require('http')
 
 const serve = require('koa-static')
 const mount = require('koa-mount')
@@ -114,9 +116,24 @@ router.use('/', frontRouter.routes())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-app.listen(program.port || process.env.PORT, function () {
+const server = http.createServer(app.callback())
+
+server.listen(program.port || process.env.PORT, function () {
   const port = this.address().port
   const url = 'http://localhost:' + port
 
   console.log(chalk.blue('[muffin]') + ' ' + 'Running at ' + chalk.grey(url))
+
+  process.stdin.resume()
+  process.stdin.setEncoding('utf8')
+  enableDestroy(server)
+
+  process.stdin.on('data', data => {
+    data = (data + '').trim().toLowerCase()
+
+    if (data === 'rs') {
+      console.log('test')
+      server.destroy()
+    }
+  })
 })

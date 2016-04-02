@@ -39,6 +39,7 @@
     "npm": "^3.8.5",
     "ora": "^0.2.1",
     "query-string": "^4.0.2",
+    "server-destroy": "^1.0.1",
     "update-notifier": "^0.6.3"
   },
   "engines": {
