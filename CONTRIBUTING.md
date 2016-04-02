@@ -2,7 +2,7 @@
 
 Muffin currently consists of two parts: The [Ember app](https://github.com/muffinjs/client) that runs in the user's browser and the [CLI](https://github.com/muffinjs/app) (also called "core" or "main package") that supplies the data and processes your website's contents.
 
-The following guideline will show you how to set up both on your local machine to be able to start contributing code. But before you do anything, please make sure that your npm permissions are [fixed](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
+The following guidelines will show you how to set up both on your local machine to be able to start contributing code. But before you do anything, please make sure that your npm permissions are [fixed](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
 
 If you just want to fix a misspelling or something equally small, simply click "Edit" (the small pencil) on the affected file and GitHub will automatically prepare a working copy for you. But if you'd like to add a new feature or make changes to the code, read along:
 
