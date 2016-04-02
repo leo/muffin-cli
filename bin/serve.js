@@ -116,7 +116,7 @@ router.use('/', frontRouter.routes())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-const server = http.createServer(app.callback())
+var server = http.createServer(app.callback())
 
 server.listen(program.port || process.env.PORT, function () {
   const port = this.address().port
@@ -132,8 +132,14 @@ server.listen(program.port || process.env.PORT, function () {
     data = (data + '').trim().toLowerCase()
 
     if (data === 'rs') {
-      console.log('test')
       server.destroy()
+
+      server = http.createServer(app.callback())
+
+      server.listen(program.port || process.env.PORT, () => {
+        enableDestroy(server)
+        utils.log(chalk.green('Restarted!'))
+      })
     }
   })
 })
