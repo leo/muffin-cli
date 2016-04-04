@@ -127,13 +127,11 @@ var server = http.createServer(app.callback())
 
 server.listen(program.port || process.env.PORT, function () {
   const port = this.address().port
-  const url = 'http://localhost:' + port
+  const host = 'localhost'
+  const url = 'http://' + host + ':' + port
 
   console.log(chalk.blue('[muffin]') + ' ' + 'Running at ' + chalk.grey(url))
-
-  if (controller.listening) {
-    controller.listening.bind(this)()
-  }
+  controller.emit('listening', host, port)
 
   process.stdin.resume()
   process.stdin.setEncoding('utf8')
