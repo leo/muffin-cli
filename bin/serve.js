@@ -28,10 +28,6 @@ program
   .option('-p, --port <port>', 'The port on which your site will be available', parseInt)
   .parse(process.argv)
 
-process.on('SIGINT', () => rope.close(() => {
-  process.exit(0)
-}))
-
 if (!utils.isSite()) {
   utils.log(chalk.red('No site in here!'))
   process.exit(1)
