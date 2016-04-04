@@ -6,21 +6,19 @@ const chalk = require('chalk')
 const fs = require('fs-extra')
 const path = require('path')
 const utils = require('../lib/utils')
-const connection = require('../lib/db').rope
-const models = require('../lib/get').models
 
 program.parse(process.argv)
 const args = program.args
 
 if (!utils.isSite()) {
-  utils.log(chalk.red('No site in here! You need to be within a site\'s directory.'))
-  return
+  return utils.log(chalk.red('No site in here! You need to be within a site\'s directory.'))
 }
 
 if (args.length === 0) {
-  utils.log('You need to specify a file: ' + chalk.grey('muffin import file.json'))
-  return
+  return utils.log('You need to specify a file: ' + chalk.grey('muffin import file.json'))
 }
+
+const connection = require('../lib/db').rope
 
 function insertData (files) {
   files = files.map(file => {
@@ -65,12 +63,12 @@ connection.on('open', () => {
 
       if (!utils.exists(path.format(details))) {
         utils.log(`The file "${details.base}" doesn\'t exist`)
-        process.exit(1)
+        connection.close(() => process.exit(1))
       }
 
       if (collections.indexOf(details.name) === -1) {
         utils.log(`Collection "${details.name}" doesn\'t exist`)
-        process.exit(1)
+        connection.close(() => process.exit(1))
       }
     }
 
