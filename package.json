@@ -7,7 +7,8 @@
     "muffin": "bin/index.js",
     "muffin-new": "bin/new.js",
     "muffin-serve": "bin/serve.js",
-    "muffin-build": "bin/build.js"
+    "muffin-build": "bin/build.js",
+    "muffin-import": "bin/import.js"
   },
   "bugs": {
     "url": "https://github.com/muffinjs/app/issues"
