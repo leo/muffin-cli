@@ -1,4 +1,4 @@
-export async function onListen() {
+export function onListen() {
   const port = this.address().port
   const url = 'http://localhost:' + port
 
