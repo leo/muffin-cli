@@ -19,6 +19,7 @@ const jwt = require('koa-jwt')
 const db = require('../lib/db')
 const helpers = require('../lib/helpers')
 const utils = require('../lib/utils')
+const controller = require('../lib/controller')
 
 const app = koa()
 const rope = db.rope
@@ -129,6 +130,10 @@ server.listen(program.port || process.env.PORT, function () {
   const url = 'http://localhost:' + port
 
   console.log(chalk.blue('[muffin]') + ' ' + 'Running at ' + chalk.grey(url))
+
+  if (controller.listening) {
+    controller.listening.bind(this)()
+  }
 
   process.stdin.resume()
   process.stdin.setEncoding('utf8')
