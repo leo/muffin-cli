@@ -64,9 +64,19 @@ function getRoutes (path) {
   return require('../lib/routes/' + path).routes()
 }
 
+const APIroutes = [
+  'content',
+  'reset-password',
+  'token',
+  'upload'
+]
+
 // Register media routes and API
 router.use('/uploads*', getRoutes('uploads'))
-router.use('/api', getRoutes('api'))
+
+for (let route of APIroutes) {
+  router.use('/api', getRoutes('api/' + route))
+}
 
 // Serve assets of admin area...
 app.use(mount('/admin', serve(__dirname + '/../dist')))
