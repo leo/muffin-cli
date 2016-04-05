@@ -79,4 +79,5 @@ const prompts = [
   }
 ]
 
+// Prompt user for details and pass answers to Generator
 inquirer.prompt(prompts, answers => new Generator(answers, targetDir))
