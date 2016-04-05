@@ -105,6 +105,7 @@ app.use(function *(next){
   console.log(chalk.blue('[muffin]') + ' %s %s - %sms', this.method, this.url, ms)
 })
 
+// Load front routes
 const frontRouter = require('../lib/routes/front')
 
 // Enable new instance of rendering engine for front
