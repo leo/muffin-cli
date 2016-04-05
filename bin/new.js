@@ -50,6 +50,7 @@ const prompts = [
       var git
 
       try {
+        // Retrieve author from git config
         git = gitConfig.sync()
       } catch (err) {
         git = false
