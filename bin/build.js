@@ -1,19 +1,18 @@
-#!/usr/bin/env node --harmony
+#!/usr/bin/env babel-node
 
-const broccoli = require('broccoli')
-const ncp = require('ncp')
-const path = require('path')
-const chalk = require('chalk')
-const program = require('commander')
-
-const utils = require('../lib/utils')
+import broccoli from 'broccoli'
+import ncp from 'ncp'
+import path from 'path'
+import chalk from 'chalk'
+import program from 'commander'
+import { log, isSite } from '../lib/utils'
 
 program
   .option('-w, --watch', 'Rebuild site if files change')
   .parse(process.argv)
 
-if (!utils.isSite()) {
-  utils.log(chalk.red('No site in here!'))
+if (!isSite()) {
+  log(chalk.red('No site in here!'))
   process.exit(1)
 }
 
@@ -34,7 +33,7 @@ function startWatching () {
     console.log(results)
   })
 
-  watch.on('error', err => utils.log(err))
+  watch.on('error', err => log(err))
 }
 
 builder.build().then(results => {
@@ -48,16 +47,16 @@ builder.build().then(results => {
 
     if (buildTime) {
       // The original built time is in nanoseconds, so we need to convert it to milliseconds
-      utils.log(chalk.green(`Finished building after ${Math.floor(buildTime / 1e6)}ms.`))
+      log(chalk.green(`Finished building after ${Math.floor(buildTime / 1e6)}ms.`))
     } else {
-      utils.log(chalk.green('Finished building.'))
+      log(chalk.green('Finished building.'))
     }
 
     if (program.watch) {
       return startWatching()
     }
 
-    builder.cleanup().catch(err => utils.log(err))
+    builder.cleanup().catch(err => log(err))
   })
 
 }).catch(err => {

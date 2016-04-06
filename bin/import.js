@@ -1,24 +1,26 @@
-#!/usr/bin/env node --use_strict
+#!/usr/bin/env babel-node
 
-const Mongonaut = require('mongonaut')
-const program = require('commander')
-const chalk = require('chalk')
-const fs = require('fs-extra')
-const path = require('path')
-const utils = require('../lib/utils')
+import Mongonaut from 'mongonaut'
+import program from 'commander'
+import chalk from 'chalk'
+import fs from 'fs-extra'
+import path from 'path'
+import { log, isSite, exists } from '../lib/utils'
 
 program.parse(process.argv)
 const args = program.args
 
-if (!utils.isSite()) {
-  return utils.log(chalk.red('No site in here! You need to be within a site\'s directory.'))
+if (!isSite()) {
+  log(chalk.red('No site in here! You need to be within a site\'s directory.'))
+  process.exit(1)
 }
 
 if (args.length === 0) {
-  return utils.log('You need to specify a file: ' + chalk.grey('muffin import file.json'))
+  log('You need to specify a file: ' + chalk.grey('muffin import file.json'))
+  process.exit(1)
 }
 
-const connection = require('../lib/db').rope
+import { rope as connection } from '../lib/db'
 
 function insertData (files) {
   files = files.map(file => {
@@ -41,9 +43,9 @@ function insertData (files) {
   connection.close()
 
   Promise.all(imports).then(() => {
-    utils.log(chalk.green('Successfully imported data!'))
+    log(chalk.green('Successfully imported data!'))
   }, reason => {
-    utils.log('Not able to insert data! Make sure that your DB is running.')
+    log('Not able to insert data! Make sure that your DB is running.')
   })
 }
 
@@ -51,7 +53,7 @@ connection.on('open', () => {
   // Firstly make sure that all files exist
   connection.db.listCollections().toArray((err, names) => {
     if (err) {
-      return utils.log(err)
+      return log(err)
     }
 
     const collections = names.map(details => {
@@ -61,13 +63,13 @@ connection.on('open', () => {
     for (let file of args) {
       let details = path.parse(path.resolve(file))
 
-      if (!utils.exists(path.format(details))) {
-        utils.log(`The file "${details.base}" doesn\'t exist`)
+      if (!exists(path.format(details))) {
+        log(`The file "${details.base}" doesn\'t exist`)
         connection.close(() => process.exit(1))
       }
 
       if (collections.indexOf(details.name) === -1) {
-        utils.log(`Collection "${details.name}" doesn\'t exist`)
+        log(`Collection "${details.name}" doesn\'t exist`)
         connection.close(() => process.exit(1))
       }
     }
