@@ -80,5 +80,16 @@ const prompts = [
   }
 ]
 
-// Prompt user for details and pass answers to Generator
-inquirer.prompt(prompts, answers => new Generator(answers, targetDir))
+var defaults = {}
+
+for (var prompt of prompts) {
+  var value = prompt.default || ''
+  defaults[prompt.name] = typeof value === 'function' ? value() : value
+}
+
+if (program.yes) {
+  new Generator(defaults, targetDir)
+} else {
+  // Prompt user for details and pass answers to Generator
+  inquirer.prompt(prompts, answers => new Generator(answers, targetDir))
+}
