@@ -15,7 +15,12 @@ gulp.task('transpile', function () {
   return gulp.src(srcPath)
   .pipe(cache('muffin'))
   .pipe(babel({
-    presets: ['es2015']
+    presets: ['es2015'],
+    plugins: [
+      'transform-async-to-generator',
+      'transform-runtime',
+      'syntax-async-functions'
+    ]
   }))
   .pipe(check(condition, ext.crop()))
   .pipe(gulp.dest('dist'))
