@@ -1,6 +1,6 @@
-const npm = require('npm')
-const utils = require('../utils')
-const exec = require('child_process').execSync
+import npm from 'npm'
+import { log } from '../utils'
+import { execSync } from 'child_process'
 
 class NPM {
   constructor (command, callback) {
@@ -15,18 +15,19 @@ class NPM {
 
   setProgressBar (state) {
     try {
-      exec('npm set progress=' + state.toString(), {stdio: [0, 1]})
+      execSync('npm set progress=' + state.toString(), {stdio: [0, 1]})
     } catch (err) {
-      throw utils.log(err)
+      log(err)
+      process.exit(1)
     }
   }
 
   loaded (err) {
-    if (err) return utils.log(err)
+    if (err) return log(err)
     this.setProgressBar(false)
 
     npm.commands[this.cmd]([], function (err, data) {
-      if (err) return utils.log(err)
+      if (err) return log(err)
 
       if (data) {
         this.cb(data)

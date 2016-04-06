@@ -1,10 +1,10 @@
-const fs = require('fs-extra')
-const path = require('path')
-const ora = require('ora')
-const chalk = require('chalk')
-const utils = require('../utils')
-const Mongonaut = require('mongonaut')
-const NPM = require('./npm')
+import fs from 'fs-extra'
+import path from 'path'
+import ora from 'ora'
+import chalk from 'chalk'
+import { log } from '../utils'
+import Mongonaut from 'mongonaut'
+import NPM from './npm'
 
 class Generator {
   constructor (answers, targetDir) {
@@ -12,7 +12,7 @@ class Generator {
 
     this.answers = answers
     this.targetDir = targetDir
-    this.template = path.normalize(__dirname + '/../../template')
+    this.template = path.normalize(__dirname + '/../../../template')
 
     this.insertSampleData()
   }
@@ -25,17 +25,17 @@ class Generator {
       collection: 'pages'
     })
 
-    const dataPath = __dirname + '/../../data/'
+    const dataPath = __dirname + '/../../../data/'
     const pages = mongonaut.import(dataPath + 'pages.json')
 
     mongonaut.set('collection', 'users')
     const users = mongonaut.import(dataPath + 'users.json')
 
     Promise.all([pages, users]).then(function () {
-      utils.log(chalk.green('Sucessfully inserted sample data!'))
+      log(chalk.green('Sucessfully inserted sample data!'))
       this.findBlueprints()
     }.bind(this)).catch(err => {
-      utils.log('Not able to insert data! Make sure that your DB is running.')
+      log('Not able to insert data! Make sure that your DB is running.')
     })
   }
 
@@ -91,14 +91,14 @@ class Generator {
       try {
         fs.ensureDirSync(path.dirname(dest))
       } catch (err) {
-        return utils.log(err)
+        return log(err)
       }
 
       // If so, copy the blueprints
       try {
         fs.copySync(file, dest)
       } catch (err) {
-        return utils.log(err)
+        return log(err)
       }
     }
 
@@ -111,9 +111,9 @@ class Generator {
     new NPM('install', function (data) {
       if (data) {
         this.spinner.stop()
-        utils.log('Generated new site in ' + chalk.gray(this.targetDir))
+        log('Generated new site in ' + chalk.gray(this.targetDir))
       } else {
-        utils.log(chalk.red('Not able to install dependencies!'))
+        log(chalk.red('Not able to install dependencies!'))
       }
     }.bind(this))
   }
