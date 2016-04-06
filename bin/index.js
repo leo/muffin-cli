@@ -1,4 +1,4 @@
-#!/usr/bin/env babel-node
+#!/usr/bin/env node
 
 import app from 'commander'
 import dotenv from 'dotenv'

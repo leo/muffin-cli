@@ -1,4 +1,4 @@
-#!/usr/bin/env babel-node
+#!/usr/bin/env node
 
 import broccoli from 'broccoli'
 import ncp from 'ncp'
