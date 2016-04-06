@@ -18,7 +18,7 @@ gulp.task('transpile', function () {
     presets: ['es2015']
   }))
   .pipe(check(condition, ext.crop()))
-  .pipe(gulp.dest('build'))
+  .pipe(gulp.dest('dist'))
 })
 
 gulp.task('watch', function () {

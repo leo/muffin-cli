@@ -4,11 +4,11 @@
   "version": "2.0.0",
   "author": "Leonard Lamprecht <mindrun@icloud.com> (http://leo.im)",
   "bin": {
-    "muffin": "build/bin/index",
-    "muffin-new": "build/bin/new",
-    "muffin-serve": "build/bin/serve",
-    "muffin-build": "build/bin/build",
-    "muffin-import": "build/bin/import"
+    "muffin": "dist/bin/index",
+    "muffin-new": "dist/bin/new",
+    "muffin-serve": "dist/bin/serve",
+    "muffin-build": "dist/bin/build",
+    "muffin-import": "dist/bin/import"
   },
   "bugs": {
     "url": "https://github.com/muffinjs/app/issues"

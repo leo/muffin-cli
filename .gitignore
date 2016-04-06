@@ -1,6 +1,5 @@
 # build output
-client
-build
+dist
 
 # dependencies
 node_modules
