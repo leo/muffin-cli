@@ -2,23 +2,27 @@ const gulp = require('gulp')
 const babel = require('gulp-babel')
 const cache = require('gulp-cached')
 const ext = require('gulp-ext')
+const check = require('gulp-if')
+const path = require('path')
 
-const paths = {
-  bin: 'bin/*'
+const srcPath = 'src/**/*'
+
+const condition = function (file) {
+  return file.path.indexOf('/bin') > -1
 }
 
-gulp.task('compile-bin', function () {
-  return gulp.src(paths.bin)
-  .pipe(cache('bin'))
+gulp.task('transpile', function () {
+  return gulp.src(srcPath)
+  .pipe(cache('muffin'))
   .pipe(babel({
     presets: ['es2015']
   }))
-  .pipe(ext.crop())
-  .pipe(gulp.dest('build/bin'))
+  .pipe(check(condition, ext.crop()))
+  .pipe(gulp.dest('build'))
 })
 
 gulp.task('watch', function () {
-  gulp.watch(paths.bin, ['compile-bin'])
+  gulp.watch(srcPath, ['transpile'])
 })
 
-gulp.task('default', ['watch', 'compile-bin'])
+gulp.task('default', ['watch', 'transpile'])
