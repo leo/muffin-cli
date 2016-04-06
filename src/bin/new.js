@@ -22,7 +22,7 @@ const directory = program.args[program.args.length - 1]
 // Resolve the path of the directory or use the current working dir
 const targetDir = directory ? path.resolve(process.cwd(), directory) : process.cwd()
 
-if (targetDir == path.normalize(__dirname + '/../template')) {
+if (targetDir == path.normalize(__dirname + '/../../template')) {
   log('You shouldn\'t run ' + chalk.gray('init') + ' in here.')
   log('Please run it somewhere outside of the project.')
 
