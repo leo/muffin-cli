@@ -1,10 +1,10 @@
-#!/usr/bin/env node --use_strict
+#!/usr/bin/env babel-node
 
-const app = require('commander')
-const dotenv = require('dotenv')
-const updateNotifier = require('update-notifier')
+import app from 'commander'
+import dotenv from 'dotenv'
+import updateNotifier from 'update-notifier'
+import pkg from '../package.json'
 
-const pkg = require(__dirname + '/../package.json')
 updateNotifier({ pkg }).notify()
 
 require('dotenv').config({
@@ -33,11 +33,11 @@ function setVariable (name, value) {
   }
 }
 
-for (var property in configDefaults) {
-  var whole = configDefaults[property]
+for (let property in configDefaults) {
+  let whole = configDefaults[property]
 
-  if (typeof whole == 'object') {
-    for (var subProp in whole) {
+  if (typeof whole === 'object') {
+    for (let subProp in whole) {
       setVariable(property + '_' + subProp, whole[subProp])
     }
   } else {

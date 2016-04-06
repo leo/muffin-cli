@@ -1,45 +1,45 @@
-#!/usr/bin/env node --use_strict
+#!/usr/bin/env babel-node
 
-const koa = require('koa')
-const program = require('commander')
-const chalk = require('chalk')
-const exec = require('child_process').execSync
-const enableDestroy = require('server-destroy')
-const http = require('http')
+import koa from 'koa'
+import program from 'commander'
+import chalk from 'chalk'
+import { execSync } from 'child_process'
+import enableDestroy from 'server-destroy'
+import http from 'http'
 
-const serve = require('koa-static')
-const mount = require('koa-mount')
-const compress = require('koa-compress')
-const handlebars = require('koa-handlebars')
-const router = require('koa-router')()
-const sendfile = require('koa-sendfile')
-const bodyParser = require('koa-body')
-const jwt = require('koa-jwt')
+import serve from 'koa-static'
+import mount from 'koa-mount'
+import compress from 'koa-compress'
+import handlebars from 'koa-handlebars'
+import koaRouter from 'koa-router'
+import sendfile from 'koa-sendfile'
+import bodyParser from 'koa-body'
+import jwt from 'koa-jwt'
 
-const db = require('../lib/db')
-const helpers = require('../lib/helpers')
-const utils = require('../lib/utils')
-const controller = require('../lib/controller')
+import { rope } from '../lib/db'
+import helpers from '../lib/helpers'
+import { log, isSite, exists } from '../lib/utils'
+import controller from '../lib/controller'
 
+const router = koaRouter()
 const app = koa()
-const rope = db.rope
 
 program
   .option('-w, --watch', 'Rebuild site if files change')
   .option('-p, --port <port>', 'The port on which your site will be available', parseInt)
   .parse(process.argv)
 
-if (!utils.isSite()) {
-  utils.log(chalk.red('No site in here!'))
+if (!isSite()) {
+  log(chalk.red('No site in here!'))
   process.exit(1)
 }
 
 // Build before serving if "dist" directory doesn't exist
-if (!utils.exists(process.cwd() + '/dist')) {
+if (!exists(process.cwd() + '/dist')) {
   try {
-    exec('muffin build', {stdio: [0, 1]})
+    execSync('muffin build', {stdio: [0, 1]})
   } catch (err) {
-    utils.log(err)
+    log(err)
     process.exit(1)
   }
 }
@@ -94,9 +94,9 @@ router.get('/login', function *(next) {
 
 // Log HTTP requests to console
 app.use(function *(next){
-  var start = new Date
+  let start = new Date
   yield next
-  var ms = new Date - start
+  let ms = new Date - start
 
   if (this.url.split('/')[1] == 'api') {
     return
@@ -106,7 +106,7 @@ app.use(function *(next){
 })
 
 // Load front routes
-const frontRouter = require('../lib/routes/front')
+import frontRouter from '../lib/routes/front'
 
 // Enable new instance of rendering engine for front
 frontRouter.use(handlebars({
@@ -124,7 +124,7 @@ router.use('/', frontRouter.routes())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-var server = http.createServer(app.callback())
+let server = http.createServer(app.callback())
 
 server.listen(program.port || process.env.PORT, function () {
   const port = this.address().port
@@ -148,7 +148,7 @@ server.listen(program.port || process.env.PORT, function () {
 
       server.listen(program.port || process.env.PORT, () => {
         enableDestroy(server)
-        utils.log(chalk.green('Restarted!'))
+        log(chalk.green('Restarted!'))
       })
     }
   })

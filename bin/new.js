@@ -1,15 +1,15 @@
-#!/usr/bin/env node --harmony
+#!/usr/bin/env babel-node
 
-const path = require('path')
-const fs = require('fs-extra')
-const program = require('commander')
-const inquirer = require('inquirer')
-const gitConfig = require('git-config')
-const chalk = require('chalk')
-const mkdirp = require('mkdirp')
+import path from 'path'
+import fs from 'fs-extra'
+import program from 'commander'
+import inquirer from 'inquirer'
+import gitConfig from 'git-config'
+import chalk from 'chalk'
+import mkdirp from 'mkdirp'
 
-const utils = require('../lib/utils')
-const Generator = require('../lib/tasks/generate')
+import { log, isSite } from '../lib/utils'
+import Generator from '../lib/tasks/generate'
 
 program
   .option('-y, --yes', 'Skip all questions')
@@ -23,14 +23,14 @@ const directory = program.args[program.args.length - 1]
 const targetDir = directory ? path.resolve(process.cwd(), directory) : process.cwd()
 
 if (targetDir == path.normalize(__dirname + '/../template')) {
-  utils.log('You shouldn\'t run ' + chalk.gray('init') + ' in here.')
-  utils.log('Please run it somewhere outside of the project.')
+  log('You shouldn\'t run ' + chalk.gray('init') + ' in here.')
+  log('Please run it somewhere outside of the project.')
 
   process.exit(0)
 }
 
-if (utils.isSite() && !program.force) {
-  utils.log(chalk.red('There\'s already a site in here!'))
+if (isSite() && !program.force) {
+  log(chalk.red('There\'s already a site in here!'))
   process.exit(1)
 }
 
@@ -47,7 +47,7 @@ const prompts = [
     name: 'author',
     message: 'Author',
     default () {
-      var git
+      let git
 
       try {
         // Retrieve author from git config
@@ -80,10 +80,10 @@ const prompts = [
   }
 ]
 
-var defaults = {}
+let defaults = {}
 
-for (var prompt of prompts) {
-  var value = prompt.default || ''
+for (let prompt of prompts) {
+  let value = prompt.default || ''
   defaults[prompt.name] = typeof value === 'function' ? value() : value
 }
 
