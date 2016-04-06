@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 const babel = require('gulp-babel')
 const cache = require('gulp-cached')
+const ext = require('gulp-ext')
 
 const paths = {
   bin: 'bin/*'
@@ -12,6 +13,7 @@ gulp.task('compile-bin', function () {
   .pipe(babel({
     presets: ['es2015']
   }))
+  .pipe(ext.crop())
   .pipe(gulp.dest('build/bin'))
 })
 
