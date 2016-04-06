@@ -12,8 +12,8 @@ const utils = require('../lib/utils')
 const Generator = require('../lib/tasks/generate')
 
 program
-  .option('-f, --force', 'Overwrite the existing site')
   .option('-y, --yes', 'Skip all questions')
+  .option('-f, --force', 'If the current directory contains a site, overwrite it')
   .parse(process.argv)
 
 // Get the directory, if one was defined
