@@ -43,7 +43,7 @@ function insertData (files) {
   Promise.all(imports).then(() => {
     utils.log(chalk.green('Successfully imported data!'))
   }, reason => {
-    utils.log('Not able to insert sample data!', reason)
+    utils.log('Not able to insert data! Make sure that your DB is running.')
   })
 }
 
