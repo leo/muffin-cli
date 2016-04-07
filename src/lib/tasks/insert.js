@@ -2,15 +2,16 @@ import Mongonaut from 'mongonaut'
 import path from 'path'
 import fs from 'fs-extra'
 import chalk from 'chalk'
-import { rope } from '../db'
 import { log, exists } from '../utils'
 
 class Insert {
-  constructor (files) {
+  constructor (files, callback) {
     this.files = files
+    this.rope = require('../db').rope
+    this.cb = callback
 
-    rope.on('open', function () {
-      rope.db.listCollections().toArray(this.checkInput.bind(this))
+    this.rope.on('open', function () {
+      this.rope.db.listCollections().toArray(this.checkInput.bind(this))
     }.bind(this))
   }
 
@@ -22,7 +23,7 @@ class Insert {
     let files = [],
         walkers = []
 
-    const collections = names.map(details => {
+    this.collections = names.map(details => {
       return details.name
     })
 
@@ -32,7 +33,7 @@ class Insert {
 
       if (!exists(path.format(details))) {
         log(`The file or directory "${details.base}" doesn\'t exist`)
-        rope.close(() => process.exit(1))
+        this.rope.close(() => process.exit(1))
       }
 
       if (details.ext) {
@@ -41,8 +42,8 @@ class Insert {
       }
 
       let prom = new Promise((resolve, reject) => {
-        let walker = fs.walk(fullPath)
-        let subFiles = []
+        let walker = fs.walk(fullPath),
+            subFiles = []
 
         walker.on('data', item => {
           let info = path.parse(item.path)
@@ -59,33 +60,40 @@ class Insert {
       walkers.push(prom)
     }
 
-    rope.close()
+    this.rope.close()
+
+    if (walkers.length === 0) {
+      return this.tryImport(files)
+    }
 
     Promise.all(walkers).then(function (items) {
       files = files.concat(items[0])
-      let imports = []
-
-      for (let file of files) {
-        let info = path.parse(file)
-
-        if (collections.indexOf(info.name) === -1) {
-          log(`Collection "${info.name}" doesn\'t exist`)
-          rope.close(() => process.exit(1))
-        }
-
-        imports.push(this.importFile(info))
-      }
-
-      Promise.all(imports).then(() => {
-        log(chalk.green('Successfully imported data!'))
-      }, reason => {
-        log('Not able to insert data! Make sure that your DB is running.')
-      })
+      this.tryImport(files)
     }.bind(this)).catch((err, item) => {
       throw err
     })
+  }
 
-    rope.close()
+  tryImport (files) {
+    let imports = []
+
+    for (let file of files) {
+      let info = path.parse(file)
+
+      if (this.collections.indexOf(info.name) === -1) {
+        log(`Collection "${info.name}" doesn\'t exist`)
+        this.rope.close(() => process.exit(1))
+      }
+
+      imports.push(this.importFile(info))
+    }
+
+    Promise.all(imports).then(function (data) {
+      log(chalk.green('Successfully imported data!'))
+      this.cb(data)
+    }.bind(this), reason => {
+      log('Not able to insert data! Make sure that your DB is running.')
+    })
   }
 
   importFile (file) {
