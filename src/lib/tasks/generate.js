@@ -5,6 +5,7 @@ import chalk from 'chalk'
 import { log } from '../utils'
 import Mongonaut from 'mongonaut'
 import NPM from './npm'
+import Insert from './insert'
 
 class Generator {
   constructor (answers, targetDir) {
@@ -18,24 +19,18 @@ class Generator {
   }
 
   insertSampleData () {
-    const mongonaut = new Mongonaut({
-      user: this.answers.db_user || '',
-      pwd: this.answers.db_password || '',
-      db: this.answers.db_name,
-      collection: 'pages'
-    })
+    const walker = fs.walk(__dirname + '/../../../data/')
+    let files = []
 
-    const dataPath = __dirname + '/../../../data/'
-    const pages = mongonaut.import(dataPath + 'pages.json')
+    walker.on('data', item => files.push(item.path))
 
-    mongonaut.set('collection', 'users')
-    const users = mongonaut.import(dataPath + 'users.json')
+    walker.on('end', function () {
+      files.shift()
+      new Insert(files, this.findBlueprints.bind(this))
+    }.bind(this))
 
-    Promise.all([pages, users]).then(function () {
-      log(chalk.green('Sucessfully inserted sample data!'))
-      this.findBlueprints()
-    }.bind(this)).catch(err => {
-      log('Not able to insert data! Make sure that your DB is running.')
+    walker.on('error', (err, item) => {
+      throw err
     })
   }
 
