@@ -8,9 +8,9 @@ const path = require('path')
 const srcPath = 'src/**/*'
 const condition = file => file.path.indexOf('/bin') > -1
 
-gulp.task('transpile', function () {
+gulp.task('transpile', () => {
   return gulp.src(srcPath)
-  .pipe(cache('muffin'))
+  .pipe(cache('transpile'))
   .pipe(babel({
     presets: ['es2015'],
     plugins: [
@@ -23,7 +23,7 @@ gulp.task('transpile', function () {
   .pipe(gulp.dest('dist'))
 })
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   gulp.watch(srcPath, ['transpile'])
 })
 
