@@ -6,10 +6,7 @@ const check = require('gulp-if')
 const path = require('path')
 
 const srcPath = 'src/**/*'
-
-const condition = function (file) {
-  return file.path.indexOf('/bin') > -1
-}
+const condition = file => file.path.indexOf('/bin') > -1
 
 gulp.task('transpile', function () {
   return gulp.src(srcPath)
