@@ -3,7 +3,7 @@
 import koa from 'koa'
 import program from 'commander'
 import chalk from 'chalk'
-import { execSync } from 'child_process'
+import { exec } from 'child_process'
 import enableDestroy from 'server-destroy'
 import http from 'http'
 
@@ -35,13 +35,15 @@ if (!isSite()) {
 }
 
 // Build before serving if "dist" directory doesn't exist
-if (!exists(process.cwd() + '/dist')) {
-  try {
-    execSync('muffin build', {stdio: [0, 1]})
-  } catch (err) {
-    log(err)
-    process.exit(1)
-  }
+if (program.watch || !exists(process.cwd() + '/dist')) {
+  const builder = exec('muffin build -w')
+
+  builder.stdout.on('data', data => process.stdout.write(chalk.green(data)))
+  builder.stderr.on('data', data => console.error(data))
+
+  builder.on('error', err => {
+    throw err
+  })
 }
 
 app.use(compress())
