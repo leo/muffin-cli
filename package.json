@@ -88,7 +88,6 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-cached": "^1.1.0",
-    "gulp-ext": "^1.0.0",
-    "gulp-if": "^2.0.0"
+    "gulp-ext": "^1.0.0"
   }
 }
