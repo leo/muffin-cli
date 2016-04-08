@@ -14,6 +14,7 @@ import Generator from '../lib/tasks/generate'
 program
   .option('-y, --yes', 'Skip all questions')
   .option('-f, --force', 'If the current directory contains a site, overwrite it')
+  .option('-n, --skip-npm', 'Skip installing dependencies')
   .parse(process.argv)
 
 // Get the directory, if one was defined
@@ -87,9 +88,14 @@ for (let prompt of prompts) {
   defaults[prompt.name] = typeof value === 'function' ? value() : value
 }
 
+defaults.skipNpm = program.skipNpm
+
 if (program.yes) {
   new Generator(defaults, targetDir)
 } else {
   // Prompt user for details and pass answers to Generator
-  inquirer.prompt(prompts, answers => new Generator(answers, targetDir))
+  inquirer.prompt(prompts, answers => {
+    answers.skipNpm = program.skipNpm
+    new Generator(answers, targetDir)
+  })
 }

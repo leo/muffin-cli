@@ -58,6 +58,14 @@ class Generator {
     this.blueprints.push(file.path)
   }
 
+  done () {
+    if (this.spinner) {
+      this.spinner.stop()
+    }
+
+    log('Generated new site in ' + chalk.gray(this.targetDir))
+  }
+
   insertBlueprints () {
     // Strip away the "/template" folder itself
     // We only need its contents
@@ -97,6 +105,11 @@ class Generator {
       }
     }
 
+    if (this.answers.skipNpm) {
+      this.done()
+      return
+    }
+
     this.spinner = ora(chalk.green('Installing missing packages via npm'))
     this.spinner.color = 'green'
     this.spinner.start()
@@ -106,7 +119,7 @@ class Generator {
     new NPM('install', function (data) {
       if (data) {
         this.spinner.stop()
-        log('Generated new site in ' + chalk.gray(this.targetDir))
+        this.done()
       } else {
         log(chalk.red('Not able to install dependencies!'))
       }
