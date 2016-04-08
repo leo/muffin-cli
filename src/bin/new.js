@@ -15,6 +15,7 @@ program
   .option('-y, --yes', 'Skip all questions')
   .option('-f, --force', 'If the current directory contains a site, overwrite it')
   .option('-n, --skip-npm', 'Skip installing dependencies')
+  .option('-d, --skip-data', 'Don\'t insert sample data')
   .parse(process.argv)
 
 // Get the directory, if one was defined
@@ -88,14 +89,23 @@ for (let prompt of prompts) {
   defaults[prompt.name] = typeof value === 'function' ? value() : value
 }
 
-defaults.skipNpm = program.skipNpm
+function startGenerator (fields) {
+  const skippers = [
+    'Npm',
+    'Data'
+  ]
+
+  for (let skipper of skippers) {
+    let name = 'skip' + skipper
+    fields[name] = program[name]
+  }
+
+  new Generator(fields, targetDir)
+}
 
 if (program.yes) {
-  new Generator(defaults, targetDir)
+  startGenerator(defaults)
 } else {
   // Prompt user for details and pass answers to Generator
-  inquirer.prompt(prompts, answers => {
-    answers.skipNpm = program.skipNpm
-    new Generator(answers, targetDir)
-  })
+  inquirer.prompt(prompts, startGenerator)
 }
