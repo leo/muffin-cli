@@ -39,7 +39,7 @@
     "koa-static": "^2.0.0",
     "livereload": "^0.4.1",
     "mongonaut": "^2.1.0",
-    "mongoose": "^4.4.11",
+    "mongoose": "^4.4.12",
     "ncp": "^2.0.0",
     "npm": "^3.8.6",
     "ora": "^0.2.1",
