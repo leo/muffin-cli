@@ -15,7 +15,12 @@ class Generator {
     this.targetDir = targetDir
     this.template = path.normalize(__dirname + '/../../../template')
 
-    this.insertSampleData()
+    if (!answers.skipData) {
+      this.insertSampleData()
+      return
+    }
+
+    this.findBlueprints()
   }
 
   insertSampleData () {
