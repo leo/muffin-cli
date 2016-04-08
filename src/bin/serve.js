@@ -6,6 +6,7 @@ import chalk from 'chalk'
 import { exec } from 'child_process'
 import enableDestroy from 'server-destroy'
 import http from 'http'
+import livereload from 'livereload'
 
 import serve from 'koa-static'
 import mount from 'koa-mount'
@@ -14,6 +15,7 @@ import handlebars from 'koa-handlebars'
 import koaRouter from 'koa-router'
 import sendfile from 'koa-sendfile'
 import bodyParser from 'koa-body'
+import livereloadScript from 'koa-livereload'
 import jwt from 'koa-jwt'
 
 import { rope } from '../lib/db'
@@ -47,6 +49,7 @@ if (program.watch || !exists(process.cwd() + '/dist')) {
 }
 
 app.use(compress())
+app.use(livereloadScript())
 
 router.use('/api', jwt({
   secret: process.env.SESSION_SECRET
@@ -134,6 +137,7 @@ server.listen(program.port || process.env.PORT, function () {
   const url = 'http://' + host + ':' + port
 
   console.log(chalk.blue('[muffin]') + ' ' + 'Running at ' + chalk.grey(url))
+
   controller.emit('listening', host, port)
 
   process.stdin.resume()
@@ -155,3 +159,8 @@ server.listen(program.port || process.env.PORT, function () {
     }
   })
 })
+
+if (program.watch) {
+  const livereloadServer = livereload.createServer()
+  livereloadServer.watch(process.cwd() + '/dist')
+}

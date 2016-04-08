@@ -37,6 +37,7 @@
     "koa-router": "^5.4.0",
     "koa-sendfile": "^1.1.1",
     "koa-static": "^2.0.0",
+    "livereload": "^0.4.1",
     "mongonaut": "^2.1.0",
     "mongoose": "^4.4.11",
     "ncp": "^2.0.0",
