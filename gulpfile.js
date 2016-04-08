@@ -2,29 +2,31 @@ const gulp = require('gulp')
 const babel = require('gulp-babel')
 const cache = require('gulp-cached')
 const ext = require('gulp-ext')
-const check = require('gulp-if')
 const path = require('path')
 
-const srcPath = 'src/**/*'
-const condition = file => file.path.indexOf('/bin') > -1
+const paths = {
+  bin: 'bin/*',
+  lib: 'lib/**/*'
+}
 
-gulp.task('transpile', () => {
-  return gulp.src(srcPath)
-  .pipe(cache('transpile'))
-  .pipe(babel({
-    presets: ['es2015'],
-    plugins: [
-      'transform-async-to-generator',
-      'transform-runtime',
-      'syntax-async-functions'
-    ]
-  }))
-  .pipe(check(condition, ext.crop()))
-  .pipe(gulp.dest('dist'))
+gulp.task('lib', () => {
+  return gulp.src(paths.lib)
+  .pipe(cache('lib'))
+  .pipe(babel())
+  .pipe(gulp.dest('dist/lib'))
+})
+
+gulp.task('bin', () => {
+  return gulp.src(paths.bin)
+  .pipe(cache('bin'))
+  .pipe(babel())
+  .pipe(ext.crop())
+  .pipe(gulp.dest('dist/bin'))
 })
 
 gulp.task('watch', () => {
-  gulp.watch(srcPath, ['transpile'])
+  gulp.watch(paths.lib, ['lib'])
+  gulp.watch(paths.bin, ['bin'])
 })
 
-gulp.task('default', ['watch', 'transpile'])
+gulp.task('default', ['watch', 'bin', 'lib'])
