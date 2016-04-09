@@ -3,6 +3,16 @@
   "description": "The 21st century way of building websites",
   "version": "2.0.0",
   "author": "Leonard Lamprecht <mindrun@icloud.com> (http://leo.im)",
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-async-to-generator",
+      "transform-runtime",
+      "syntax-async-functions"
+    ]
+  },
   "bin": {
     "muffin": "dist/bin/index",
     "muffin-new": "dist/bin/new",
@@ -46,6 +56,16 @@
     "server-destroy": "^1.0.1",
     "update-notifier": "^0.6.3"
   },
+  "devDependencies": {
+    "babel-plugin-syntax-async-functions": "^6.5.0",
+    "babel-plugin-transform-async-to-generator": "^6.7.4",
+    "babel-plugin-transform-runtime": "^6.7.5",
+    "babel-runtime": "^6.6.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-cached": "^1.1.0",
+    "gulp-ext": "^1.0.0"
+  },
   "engines": {
     "node": ">= 4.0.0"
   },
@@ -78,15 +98,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/muffinjs/app.git"
-  },
-  "devDependencies": {
-    "babel-plugin-syntax-async-functions": "^6.5.0",
-    "babel-plugin-transform-async-to-generator": "^6.7.4",
-    "babel-plugin-transform-runtime": "^6.7.5",
-    "babel-runtime": "^6.6.1",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-cached": "^1.1.0",
-    "gulp-ext": "^1.0.0"
   }
 }
