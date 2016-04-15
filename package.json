@@ -33,7 +33,7 @@
     "commander": "^2.9.0",
     "dotenv": "^2.0.0",
     "escape-string-regexp": "^1.0.5",
-    "fs-extra": "^0.26.7",
+    "fs-extra": "^0.27.0",
     "git-config": "0.0.7",
     "gridfs-stream": "^1.1.1",
     "inquirer": "^1.0.0",
