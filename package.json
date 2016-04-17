@@ -36,7 +36,7 @@
     "fs-extra": "^0.27.0",
     "git-config": "0.0.7",
     "gridfs-stream": "^1.1.1",
-    "inquirer": "^1.0.1",
+    "inquirer": "^1.0.2",
     "koa": "^1.2.0",
     "koa-body": "^1.4.0",
     "koa-compress": "^1.0.9",
