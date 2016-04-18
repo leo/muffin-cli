@@ -1,0 +1,12 @@
+# config
+.env
+
+# compiled output
+dist
+tmp
+
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
