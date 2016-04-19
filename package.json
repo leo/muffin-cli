@@ -72,11 +72,10 @@
   },
   "homepage": "http://muffin.cafe",
   "keywords": [
-    "chocolate",
-    "cms",
-    "content",
-    "management",
-    "system"
+    "muffin",
+    "command",
+    "line",
+    "utility"
   ],
   "license": "MIT",
   "main": "index.js",
