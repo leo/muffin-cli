@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import app from 'commander'
+import bin from 'commander'
 import dotenv from 'dotenv'
 import updateNotifier from 'update-notifier'
 import pkg from '../../package.json'
@@ -20,7 +20,6 @@ const configDefaults = {
     password: 1234,
     name: 'muffin'
   },
-
   // This is fine, since it's just the default
   session_secret: 'random'
 }
@@ -45,13 +44,13 @@ for (let property in configDefaults) {
   }
 }
 
-app
+bin
   .version(pkg.version)
 
-app
+bin
   .command('build', 'Build your site')
   .command('new [path]', 'Generate the boilerplate for a new site')
   .command('serve', 'Serve your site locally')
   .command('import', 'Import data into your site\'s database')
 
-app.parse(process.argv)
+bin.parse(process.argv)
