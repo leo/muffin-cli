@@ -48,5 +48,7 @@ process.stdin.on('data', data => {
     server = spawn('node', ['index.js'], {
       stdio: 'inherit'
     })
+
+    console.log(chalk.green('Restarted!'))
   }
 })
