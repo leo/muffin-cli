@@ -8,6 +8,20 @@
 
 This neat command line utility handles all of the hard tasks in your workflow when creating a new site using [muffin](http://muffin.cafe). It's not just much faster than regular task managers, but also handles many other important things that speed up development (like importing data, livereloading and such).
 
+## Usage
+
+Install it through [npm](https://www.npmjs.com/package/muffin-cli):
+
+```
+npm install muffin-cli -g
+```
+
+After that, get a list of all available commands by running:
+
+```
+muffin
+```
+
 ## Contribute
 
 1. Please make sure that your npm permissions are [fixed](https://docs.npmjs.com/getting-started/fixing-npm-permissions)
