@@ -29,4 +29,5 @@ gulp.task('watch', () => {
   gulp.watch(paths.bin, ['bin'])
 })
 
-gulp.task('default', ['watch', 'bin', 'lib'])
+gulp.task('transpile', ['bin', 'lib'])
+gulp.task('default', ['watch', 'transpile'])
