@@ -3,7 +3,7 @@
 import bin from 'commander'
 import chalk from 'chalk'
 import { log, isSite, exists } from '../lib/utils'
-import { execFile, exec } from 'child_process'
+import { exec, spawn } from 'child_process'
 
 bin
   .option('-w, --watch', 'Rebuild site if files change')
@@ -27,9 +27,26 @@ if (bin.watch || !exists(process.cwd() + '/dist')) {
   })
 }
 
-execFile('node', ['index.js'], (error, stdout, stderr) => {
-  if (stderr) return log(stderr)
-  if (error) return log(error)
+let server = spawn('node', ['index.js'], {
+  stdio: 'inherit'
+})
 
-  console.log(stdout)
+process.on('SIGINT', () => {
+  server.kill('SIGINT')
+  process.exit(0)
+})
+
+process.stdin.resume()
+process.stdin.setEncoding('utf8')
+
+process.stdin.on('data', data => {
+  data = (data + '').trim().toLowerCase()
+
+  if (data === 'rs') {
+    server.kill('SIGINT')
+
+    server = spawn('node', ['index.js'], {
+      stdio: 'inherit'
+    })
+  }
 })
