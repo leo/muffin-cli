@@ -63,11 +63,7 @@
     "dist"
   ],
   "greenkeeper": {
-    "emails": false,
-    "ignore": [
-      "koa-mount",
-      "koa-sendfile"
-    ]
+    "emails": false
   },
   "homepage": "http://muffin.cafe",
   "keywords": [
