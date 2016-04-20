@@ -15,7 +15,8 @@ This neat command line utility handles all of the hard tasks in your workflow wh
 3. [Fork](https://guides.github.com/activities/forking/) this repository to your own GitHub account and then [clone](https://guides.github.com/activities/forking/#clone) it to your local device
 4. Move into the repo's directory: `cd cli`
 5. Generate the binaries: `npm link`
-6. You're ready! :loudspeaker: :sheep:
+
+You're ready! :loudspeaker: :sheep:
 
 Running the 5th step will transpile the source code for the first time and then generate binaries out of it. This basically means that you'll now be able to use the `muffin` command everywhere.
 
