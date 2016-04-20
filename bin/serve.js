@@ -28,6 +28,8 @@ if (bin.watch || !exists(process.cwd() + '/dist')) {
 }
 
 execFile('node', ['index.js'], (error, stdout, stderr) => {
-  if (error) log(error)
+  if (stderr) return log(stderr)
+  if (error) return log(error)
+
   console.log(stdout)
 })
