@@ -4,17 +4,9 @@
   </a>
 </p>
 
-# muffin
+# CLI
 
-**WORK IN PROGRESS**
-
-If you ask an experienced developer what he's thinking about content management systems, he'll probably tell you that he doesn't like them since they're bloated, overkill and slow as fuck. Muffin would like to change that.
-
-Of course it doesn't yet have those cool features which all the other cool kids on the block are showing off, but it's very ambitious and always has an open ear for feedback from all angles!
-
-## Use me
-
-To learn how to create a new site using muffin, take a look at [this](http://muffin.cafe/guide/get-started).
+This neat command line utility handles all of the hard tasks in your workflow when creating a new site using muffin. It's not just much faster than regular task managers, but also handles many other important things that speed up development (like importing data, livereloading and such).
 
 ## Contribute
 
