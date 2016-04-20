@@ -78,7 +78,6 @@
   ],
   "license": "MIT",
   "preferGlobal": true,
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/muffinjs/cli.git"
