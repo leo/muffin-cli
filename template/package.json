@@ -15,6 +15,6 @@
     "broccoli-sass": "^0.7.0"
   },
   "dependencies": {
-    "muffin": "^1.2.1"
+    "muffin": "^1.2.2"
   }
 }
