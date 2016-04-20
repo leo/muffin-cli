@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 import bin from 'commander'
-import { log, isSite } from '../lib/utils'
+import chalk from 'chalk'
+import { log, isSite, exists } from '../lib/utils'
 import { execFile, exec } from 'child_process'
 
 bin
