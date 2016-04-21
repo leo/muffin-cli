@@ -1,11 +1,11 @@
 const app = require('muffin')
+const convert = require('koa-convert')
 
-/*
 const router = app.router
 
-router.get('/', function *(next) {
+router.get('/', convert(function *(next) {
   // console.log('Home visited!')
   yield next
-})*/
+}))
 
-app.run()
+app.run(router)
