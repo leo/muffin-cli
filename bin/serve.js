@@ -36,6 +36,9 @@ process.on('SIGINT', () => {
   process.exit(0)
 })
 
+// Stop process when server script exists
+server.on('exit', () => process.exit(0))
+
 process.stdin.resume()
 process.stdin.setEncoding('utf8')
 
