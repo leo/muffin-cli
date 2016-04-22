@@ -4,16 +4,12 @@ import bin from 'commander'
 import chalk from 'chalk'
 import { log, isSite, exists } from '../lib/utils'
 import { exec, spawn } from 'child_process'
+import config from '../lib/config'
 
 bin
   .option('-w, --watch', 'Rebuild site if files change')
   .option('-p, --port <port>', 'The port on which your site will be available', parseInt)
   .parse(process.argv)
-
-if (!isSite()) {
-  log(chalk.red('No site in here!'))
-  process.exit(1)
-}
 
 // Build before serving if "dist" directory doesn't exist
 if (bin.watch || !exists(process.cwd() + '/dist')) {

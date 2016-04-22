@@ -5,15 +5,11 @@ import chalk from 'chalk'
 import program from 'commander'
 import { log, isSite } from '../lib/utils'
 import Builder from '../lib/tasks/build'
+import config from '../lib/config'
 
 program
   .option('-w, --watch', 'Rebuild site if files change')
   .parse(process.argv)
-
-if (!isSite()) {
-  log(chalk.red('No site in here!'))
-  process.exit(1)
-}
 
 const tree = broccoli.loadBrocfile()
 new Builder(tree, program.watch)
