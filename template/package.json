@@ -4,7 +4,8 @@
   "description": "A new website created using muffin",
   "main": "index.js",
   "scripts": {
-    "start": "muffin serve -w"
+    "start": "muffin serve -w",
+    "now-start": "node index"
   },
   "author": "Your name",
   "devDependencies": {
