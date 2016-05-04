@@ -70,7 +70,11 @@
     "muffin",
     "command",
     "line",
-    "utility"
+    "utility",
+    "cms",
+    "content",
+    "management",
+    "system"
   ],
   "license": "MIT",
   "preferGlobal": true,
