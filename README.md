@@ -10,17 +10,7 @@ This neat command line utility handles all of the hard tasks in your workflow wh
 
 ## Usage
 
-Install it through [npm](https://www.npmjs.com/package/muffin-cli):
-
-```
-npm install muffin-cli -g
-```
-
-After that, get a list of all available commands by running:
-
-```
-muffin
-```
+If you want to build a new site using muffin, follow [these steps](http://muffin.cafe/guide/get-started).
 
 ## Contribute
 
