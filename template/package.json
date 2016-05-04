@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "koa-convert": "^1.2.0",
-    "muffin": "^1.2.2"
+    "muffin": "^1.2.3"
   }
 }
