@@ -41,7 +41,7 @@
     "ncp": "^2.0.0",
     "ora": "^0.2.1",
     "resolve": "^1.1.7",
-    "update-notifier": "^0.6.3"
+    "update-notifier": "^0.7.0"
   },
   "devDependencies": {
     "babel-plugin-syntax-async-functions": "^6.8.0",
