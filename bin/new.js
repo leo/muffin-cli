@@ -2,7 +2,7 @@
 
 import path from 'path'
 import fs from 'fs-extra'
-import program from 'commander'
+import args from 'args'
 import inquirer from 'inquirer'
 import gitConfig from 'git-config'
 import chalk from 'chalk'
@@ -11,15 +11,16 @@ import mkdirp from 'mkdirp'
 import { log, isSite } from '../lib/utils'
 import Generator from '../lib/tasks/generate'
 
-program
-  .option('-y, --yes', 'Skip all questions')
-  .option('-f, --force', 'If the current directory contains a site, overwrite it')
-  .option('-n, --skip-npm', 'Skip installing dependencies')
-  .option('-d, --skip-data', 'Don\'t insert sample data')
-  .parse(process.argv)
+args
+  .option('yes', 'Skip all questions')
+  .option('force', 'If the current directory contains a site, overwrite it')
+  .option(['n', 'skip-npm'], 'Skip installing dependencies')
+  .option(['d', 'skip-data'], 'Don\'t insert sample data')
+
+args.parse(process.argv)
 
 // Get the directory, if one was defined
-const directory = program.args[program.args.length - 1]
+const directory = args.raw._[1]
 
 // Resolve the path of the directory or use the current working dir
 const targetDir = directory ? path.resolve(process.cwd(), directory) : process.cwd()
@@ -31,7 +32,7 @@ if (targetDir == path.normalize(__dirname + '/../../template')) {
   process.exit(0)
 }
 
-if (isSite() && !program.force) {
+if (isSite() && !args.force) {
   log(chalk.red('There\'s already a site in here!'))
   process.exit(1)
 }
@@ -97,13 +98,13 @@ function startGenerator (fields) {
 
   for (let skipper of skippers) {
     let name = 'skip' + skipper
-    fields[name] = program[name]
+    fields[name] = args[name]
   }
 
   new Generator(fields, targetDir)
 }
 
-if (program.yes) {
+if (args.yes) {
   startGenerator(defaults)
 } else {
   // Prompt user for details and pass answers to Generator
