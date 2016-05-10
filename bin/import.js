@@ -7,9 +7,7 @@ import Insert from '../lib/tasks/insert'
 import config from '../lib/config'
 
 args.parse(process.argv)
-let which = args.raw._
-
-which.shift()
+const which = args.sub
 
 if (which.length === 0) {
   log('You need to specify a file or directory: ' + chalk.grey('muffin import file.json'))

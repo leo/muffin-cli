@@ -7,9 +7,9 @@ import { log, isSite } from '../lib/utils'
 import Builder from '../lib/tasks/build'
 import config from '../lib/config'
 
-args
-  .option('watch', 'Rebuild site if files change')
-  .parse(process.argv)
+args.option('watch', 'Rebuild site if files change')
 
+const options = args.parse(process.argv)
 const tree = broccoli.loadBrocfile()
-new Builder(tree, args.watch)
+
+new Builder(tree, options.watch)

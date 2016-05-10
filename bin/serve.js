@@ -7,12 +7,13 @@ import { exec, spawn } from 'child_process'
 import config from '../lib/config'
 
 args
-  .args('watch', 'Rebuild site if files change')
-  .args('port', 'The port on which your site will be available', parseInt, 3000)
-  .parse(process.argv)
+  .option('watch', 'Rebuild site if files change')
+  .option('port', 'The port on which your site will be available', 3000)
+
+const options = args.parse(process.argv)
 
 // Build before serving if "dist" directory doesn't exist
-if (args.watch || !exists(process.cwd() + '/dist')) {
+if (options.watch || !exists(process.cwd() + '/dist')) {
   const builder = exec('muffin build -w')
 
   builder.stdout.on('data', data => process.stdout.write(chalk.green(data)))

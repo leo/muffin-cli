@@ -17,10 +17,8 @@ args
   .option(['n', 'skip-npm'], 'Skip installing dependencies')
   .option(['d', 'skip-data'], 'Don\'t insert sample data')
 
-args.parse(process.argv)
-
-// Get the directory, if one was defined
-const directory = args.raw._[1]
+const options = args.parse(process.argv)
+const directory = args.sub[0]
 
 // Resolve the path of the directory or use the current working dir
 const targetDir = directory ? path.resolve(process.cwd(), directory) : process.cwd()
@@ -32,7 +30,7 @@ if (targetDir == path.normalize(__dirname + '/../../template')) {
   process.exit(0)
 }
 
-if (isSite() && !args.force) {
+if (isSite() && !options.force) {
   log(chalk.red('There\'s already a site in here!'))
   process.exit(1)
 }
@@ -104,7 +102,7 @@ function startGenerator (fields) {
   new Generator(fields, targetDir)
 }
 
-if (args.yes) {
+if (options.yes) {
   startGenerator(defaults)
 } else {
   // Prompt user for details and pass answers to Generator
