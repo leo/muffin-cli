@@ -14,11 +14,11 @@ If you want to build a new site using muffin, follow [these steps](http://muffin
 
 ## Contribute
 
-1. Please make sure that your npm permissions are [fixed](https://docs.npmjs.com/getting-started/fixing-npm-permissions)
-2. If you've already installed CLI before, uninstall it: `npm uninstall -g muffin-cli`
-3. [Fork](https://guides.github.com/activities/forking/) this repository to your own GitHub account and then [clone](https://guides.github.com/activities/forking/#clone) it to your local device
-4. Move into the repo's directory: `cd cli`
-5. Generate the binaries: `npm link`
-6. Transpile source code and watch for changes: `gulp`
+Before getting started, please make sure that your npm permissions are [fixed](https://docs.npmjs.com/getting-started/fixing-npm-permissions) and that the "muffin-cli" package is **not** installed on your device. If it is, remove it: `npm uninstall -g muffin-cli`
+
+1. [Fork](https://guides.github.com/activities/forking/) this repository to your own GitHub account and then [clone](https://guides.github.com/activities/forking/#clone) it to your local device
+2. Move into the repo's directory: `cd cli`
+3. Generate the binaries: `npm link`
+4. Transpile source code and watch for changes: `gulp`
 
 You're can now use the `muffin` command everywhere! :loudspeaker: :sheep:
