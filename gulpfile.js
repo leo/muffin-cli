@@ -1,7 +1,6 @@
 const gulp = require('gulp')
 const babel = require('gulp-babel')
 const cache = require('gulp-cached')
-const ext = require('gulp-ext')
 const chmod = require('gulp-chmod')
 const path = require('path')
 
@@ -21,7 +20,6 @@ gulp.task('bin', () => {
   return gulp.src(paths.bin)
   .pipe(cache('bin'))
   .pipe(babel())
-  .pipe(ext.crop())
   .pipe(chmod(755))
   .pipe(gulp.dest('dist/bin'))
 })
