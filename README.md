@@ -19,9 +19,6 @@ If you want to build a new site using muffin, follow [these steps](http://muffin
 3. [Fork](https://guides.github.com/activities/forking/) this repository to your own GitHub account and then [clone](https://guides.github.com/activities/forking/#clone) it to your local device
 4. Move into the repo's directory: `cd cli`
 5. Generate the binaries: `npm link`
+6. Transpile source code and watch for changes: `gulp`
 
-You're ready! :loudspeaker: :sheep:
-
-Running the 5th step will transpile the source code for the first time and then generate binaries out of it. This basically means that you'll now be able to use the `muffin` command everywhere.
-
-However, to make sure that the binaries get re-created everytime you make changes to the source code, you need to run the `gulp` command (which will watch for changes).
+You're can now use the `muffin` command everywhere! :loudspeaker: :sheep:
