@@ -51,9 +51,6 @@
     "gulp-chmod": "^1.3.0",
     "gulp-ext": "^1.0.0"
   },
-  "engines": {
-    "node": "latest"
-  },
   "files": [
     "data",
     "template",
