@@ -15,7 +15,7 @@ If you want to build a new site using muffin, follow [these steps](http://muffin
 ## Contribute
 
 1. Please make sure that your npm permissions are [fixed](https://docs.npmjs.com/getting-started/fixing-npm-permissions)
-2. If you've already installed CLI before, uninstall it: `npm uninstall muffin-cli -g`
+2. If you've already installed CLI before, uninstall it: `npm uninstall -g muffin-cli`
 3. [Fork](https://guides.github.com/activities/forking/) this repository to your own GitHub account and then [clone](https://guides.github.com/activities/forking/#clone) it to your local device
 4. Move into the repo's directory: `cd cli`
 5. Generate the binaries: `npm link`
