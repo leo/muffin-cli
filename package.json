@@ -35,7 +35,7 @@
     "git-config": "0.0.7",
     "inquirer": "^1.0.1",
     "mongonaut": "^2.1.0",
-    "mongoose": "^4.4.16",
+    "mongoose": "^4.4.17",
     "ncp": "^2.0.0",
     "ora": "^0.2.1",
     "resolve": "^1.1.7",
