@@ -8,12 +8,10 @@
     "prepublish": "gulp transpile"
   },
   "babel": {
-    "presets": [
-      "es2015-node"
-    ],
     "plugins": [
       "transform-async-to-generator",
-      "syntax-async-functions"
+      "syntax-async-functions",
+      "transform-es2015-modules-commonjs"
     ]
   },
   "bin": {
@@ -44,7 +42,7 @@
   "devDependencies": {
     "babel-plugin-syntax-async-functions": "^6.8.0",
     "babel-plugin-transform-async-to-generator": "^6.8.0",
-    "babel-preset-es2015-node": "^6.0.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-cached": "^1.1.0",
