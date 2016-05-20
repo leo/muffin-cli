@@ -106,7 +106,5 @@ if (options.yes) {
   startGenerator(defaults)
 } else {
   // Prompt user for details and pass answers to Generator
-  inquirer.prompt(prompts)
-    .then(startGenerator)
-    .catch(err => log(err))
+  inquirer.prompt(prompts).then(startGenerator).catch(err => log(err))
 }
