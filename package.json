@@ -1,7 +1,7 @@
 {
   "name": "muffin-cli",
   "description": "The command line utility for building sites using muffin",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "leo",
   "scripts": {
     "start": "gulp",
