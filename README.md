@@ -4,7 +4,7 @@
   </a>
 </p>
 
-# CLI
+# CLI [![Build Status](https://travis-ci.org/muffinjs/cli.svg?branch=master)](https://travis-ci.org/muffinjs/cli)
 
 This neat command line utility handles all of the hard tasks in your workflow when creating a new site using [muffin](http://muffin.cafe). It's not just [much faster](http://muffin.cafe/guide/workflow#builds) than regular task managers, but also handles many other important things that speed up development (like importing data, live reloading and such).
 
