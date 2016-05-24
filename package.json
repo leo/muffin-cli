@@ -5,7 +5,12 @@
   "author": "leo",
   "scripts": {
     "start": "gulp",
-    "prepublish": "gulp transpile"
+    "prepublish": "gulp transpile",
+    "test": "eslint bin/** lib/**"
+  },
+  "eslintConfig": {
+    "extends": "default",
+    "parser": "babel-eslint"
   },
   "babel": {
     "plugins": [
@@ -41,9 +46,12 @@
     "update-notifier": "^0.7.0"
   },
   "devDependencies": {
+    "babel-eslint": "^6.0.4",
     "babel-plugin-syntax-async-functions": "^6.8.0",
     "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
+    "eslint": "^2.10.2",
+    "eslint-config-default": "^0.1.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-cached": "^1.1.0",
