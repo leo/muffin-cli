@@ -12,6 +12,9 @@
     "extends": "default",
     "parser": "babel-eslint"
   },
+  "license": "MIT",
+  "preferGlobal": true,
+  "repository": "muffin/cli",
   "babel": {
     "plugins": [
       "transform-async-to-generator",
@@ -78,8 +81,5 @@
     "content",
     "management",
     "system"
-  ],
-  "license": "MIT",
-  "preferGlobal": true,
-  "repository": "muffin/cli"
+  ]
 }
