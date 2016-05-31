@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "muffin serve -w",
-    "now-start": "node index"
+    "now-start": "node index",
+    "test": "eslint *.js"
   },
   "author": "Your name",
   "devDependencies": {
@@ -15,7 +16,14 @@
     "broccoli-merge-trees": "^1.1.1",
     "broccoli-sass": "^0.7.0"
   },
+  "eslintConfig": {
+    "extends": "default",
+    "parser": "babel-eslint"
+  },
   "dependencies": {
+    "babel-eslint": "^6.0.4",
+    "eslint": "^2.11.1",
+    "eslint-config-default": "^0.1.0",
     "koa-convert": "^1.2.0",
     "muffin": "^1.2.3"
   }
