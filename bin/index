@@ -13,3 +13,7 @@ args
   .command('import', 'Import data into your site\'s database')
 
 args.parse(process.argv)
+
+if (args.sub.length === 0) {
+  args.showHelp()
+}
