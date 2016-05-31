@@ -1,7 +1,7 @@
-const mergeTrees = require('broccoli-merge-trees')
-const compileSass = require('broccoli-sass')
-const esTranspiler = require('broccoli-babel-transpiler')
-const funnel = require('broccoli-funnel')
+const mergeTrees = require('broccoli-merge-trees'),
+      compileSass = require('broccoli-sass'),
+      esTranspiler = require('broccoli-babel-transpiler'),
+      funnel = require('broccoli-funnel')
 
 const dirs = {
   scss: 'assets/scss',
