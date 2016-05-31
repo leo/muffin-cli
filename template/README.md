@@ -12,5 +12,5 @@ Hello, this is a new website!
 
 1. Clone this repo and open it
 2. Install all dependencies: `npm install`
-3. Start the DB
+3. Start the DB: `mongod`
 4. Run the site: `npm start`
