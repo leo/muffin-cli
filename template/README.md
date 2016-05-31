@@ -6,7 +6,7 @@ Hello, this is a new website!
 
 - [Node.js](https://nodejs.org/en/)
 - [MongoDB](https://www.mongodb.org)
-- [Muffin](http://muffin.cafe)
+- [muffin](http://muffin.cafe)
 
 ## Contribute
 
