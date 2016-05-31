@@ -27,7 +27,7 @@
     "muffin-import": "dist/bin/import"
   },
   "bugs": {
-    "url": "https://github.com/muffinjs/cli/issues"
+    "url": "https://github.com/muffin/cli/issues"
   },
   "dependencies": {
     "args": "^1.1.0",
@@ -81,5 +81,5 @@
   ],
   "license": "MIT",
   "preferGlobal": true,
-  "repository": "muffinjs/cli"
+  "repository": "muffin/cli"
 }
