@@ -25,6 +25,6 @@
     "eslint": "^2.11.1",
     "eslint-config-default": "^0.1.0",
     "koa-convert": "^1.2.0",
-    "muffin": "^1.2.3"
+    "muffin": "^1.2.4"
   }
 }
