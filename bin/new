@@ -89,15 +89,10 @@ for (let prompt of prompts) {
 }
 
 function startGenerator (fields) {
-  const skippers = [
-    'Npm',
-    'Data'
-  ]
-
-  for (let skipper of skippers) {
-    let name = 'skip' + skipper
-    fields[name] = args[name]
-  }
+  
+  // Skippers
+  fields["skipData"] = options.d || false;
+  fields["skipNpm"] = options.n || false;
 
   new Generator(fields, targetDir)
 }
