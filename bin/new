@@ -89,10 +89,9 @@ for (let prompt of prompts) {
 }
 
 function startGenerator (fields) {
-  
   // Skippers
-  fields["skipData"] = options.d || false;
-  fields["skipNpm"] = options.n || false;
+  fields['skipData'] = options.d || false
+  fields['skipNpm'] = options.n || false
 
   new Generator(fields, targetDir)
 }
